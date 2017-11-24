@@ -1,0 +1,27 @@
+{
+  "name": "evin",
+  "version": "1.0.0",
+  "description": "evin app",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server.js",
+    "client": "cd client && npm run start",
+    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
+    "build": "cd client && npm run build",
+    "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "express": "^4.15.4",
+    "mysql2": "^1.5.1",
+    "react-router-dom": "^4.2.2",
+    "sequelize": "^4.22.15"
+  }
+}
