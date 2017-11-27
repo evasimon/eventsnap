@@ -21,13 +21,15 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    // Customer.associate = function (models) {
-    //     // Associating Customers with ice_cream
-    //     // When a Customer is deleted, also delete any associated ice_cream
-    //     Customer.hasMany(models.ice_cream, {
-    //         onDelete: "cascade"
-    //     });
-    // };
+    Attendee.associate = function (models) {
+        // each Attendee belongs to an EventPass
+        // sets Room as foreign key constraint
+        Attendee.belongsTo(models.PassType, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
 
     return Attendee;
 };
