@@ -1,9 +1,9 @@
 // creates an Attendee model and
 // adds validation to the model
 module.exports = function (sequelize, DataTypes) {
-    var Attendee = sequelize.define("attendee", {
+    var Attendee = sequelize.define("Attendee", {
         // giving the Attendee model a name of type STRING
-        first_name: {
+        firstName: {
             type: DataTypes.STRING,
             allowNull: false,
             // the Attendee's first name cannot be null
@@ -11,12 +11,26 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1, 50]
             }
         },
-        last_name: {
+        lastName: {
             type: DataTypes.STRING,
             allowNull: false,
             // the Attendee's last name cannot be null
             validate: {
                 len: [1, 50]
+            }
+        },
+        uuid: {
+            // the Attendee's unique identifier
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV1,
+            allowNull: false,
+
+        },
+        dancerType: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1, 12]
             }
         }
     });

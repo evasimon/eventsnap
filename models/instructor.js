@@ -3,7 +3,7 @@
 module.exports = function (sequelize, DataTypes) {
     var Instructor = sequelize.define("Instructor", {
         // giving the Instructor model a name of type STRING
-        first_name: {
+        firstName: {
             type: DataTypes.STRING,
             allowNull: false,
             // the Instructor's first name cannot be null
@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1, 50]
             }
         },
-        last_name: {
+        lastName: {
             type: DataTypes.STRING,
             allowNull: false,
             // the Instructor's last name cannot be null
