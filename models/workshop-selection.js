@@ -14,7 +14,9 @@ module.exports = function (sequelize, DataTypes) {
         WorkshopSelection.belongsTo(models.Workshop, {
             foreignKey: {
                 allowNull: false
-            }
+            },
+            onDelete: "cascade"
+
         });
 
         WorkshopSelection.belongsTo(models.Attendee, {
