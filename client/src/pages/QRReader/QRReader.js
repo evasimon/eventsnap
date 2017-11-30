@@ -17,6 +17,15 @@ class QRReader extends Component {
         this.handleScan = this.handleScan.bind(this)
     }
 
+    componentDidMount() {
+        console.log('Scaning mounted')
+        // handleScan(data)
+    }
+
+    componentWillUnmount() {
+        console.log('Scaning will unmount')
+    }
+
     handleScan(data) {
         console.log(data)
         if (data) {
@@ -34,14 +43,20 @@ class QRReader extends Component {
     handleCheckIn = (uuid, id) => {
         API.checkIn(uuid, id)
             .then(res => {
-                console.log(`${uuid} is checked in now to workshop ${id}`)
-                console.log('send me the data', res.data)
-                console.log(res.data.workshopAttending.checkedIn)
-                this.setState({
-                    checkInStatus: res.data.workshopAttending.checkedIn
-                })
+                if (res.data.success) {
+                    console.log(`${uuid} is checked in now to workshop ${id}`)
+                    console.log('send me the data', res.data)
+                    console.log(res.data.result.workshop.checkedIn)
+                    this.setState({
+                        checkInStatus: res.data.result.workshop.checkedIn
+                    })
+                    alert("checked in successfully");
+                } else {
+                    alert(res.data.error);
+                }
+
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log("err"));
     }
 
     render() {
