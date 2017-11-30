@@ -1,70 +1,49 @@
-// import { worker } from "cluster";
-
 const db = require("../models");
 
 // Defining methods for the attendeeController
 module.exports = {
-    // writes the new attendee to the database
-    create: function (req, res) {
-        db.Attendee
-            .create(req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-
-    },
+    
     update: function (req, res) {
         // console.log(req.params.uuid)
-        var workshopAttending = {}
         db.Attendee
             .find({ where: { uuid: req.params.uuid } })
             .then((attendee) => {
-                // console.log(attendee)
+                if (!attendee) {
+                    res.status(404).json('Attendee not found')
+                }
                 db.WorkshopSelection
                     .find({
-                        where: { WorkshopId: req.params.id }
+                        where: {
+                            AttendeeId: attendee.id,
+                            WorkshopId: req.params.id
+                        }
                     })
                     .then((workshop) => {
-                        console.log("workshop", workshop.checkedIn)
-                        if (workshop.checkedIn === false) {
+                        if (workshop && workshop.checkedIn === false) {
+                            console.log('workshop.checkedIn is false')
                             db.WorkshopSelection
                                 .update({
-                                    checkedIn: 1
+                                    checkedIn: 1 // true
                                 }, {
                                     where: {
                                         AttendeeId: attendee.id,
                                         WorkshopId: req.params.id
                                     }
                                 })
+                                .then(result => res.json({success: true, result: result}))
+
+                        } else if (!workshop) {
+                            console.log('workshop not found')
+                            res.json({success: false, error: 'workshop selection not found'})
+                            // res.status(404).send('workshop selection not found');
                         } else {
                             console.log("you are already checked in")
-                            workshopAttending = "you are already checked in"
+                            res.json({ success: false, error: 'already checked-in' })
+
+                            // res.status(400).send('already checked-in')
                         }
-
-                        workshopAttending = workshop
-                        
-                        return {
-                            workshopAttending,
-                            attendee
-                        }    
                     })
-            .then(result => res.json(result))
-            .catch(err => res.status(422).json(err));
-
-        })
-    },
-    // finds all the attendees in the database
-    findAll: function (req, res) {
-        db.Attendee
-            .findAll(req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
-    // removes attendee from the database
-    remove: function (req, res) {
-        db.Attendee
-            .find({ where: { id: req.params.id } })
-            .then(dbModel => dbModel.destroy())
-            .then(dbModel => res.json(dbModel))
+            })
             .catch(err => res.status(422).json(err));
     }
 }
