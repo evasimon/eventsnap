@@ -1,0 +1,16 @@
+body {
+    color: #fff;
+    background-color: #416094
+}
+
+h1, h2, h3 {
+    font-family: serif;
+}
+
+a {
+    color: #00b9ff;
+}
+
+a:hover {
+    color: #00a4df;
+}
