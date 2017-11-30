@@ -4,7 +4,7 @@ const Nav = () =>
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
     <div className="container-fluid">
       <div className="navbar-header">
-        <button className="navbar-toggler" type="button" data-toggle="collapse">
+        <button className="navbar-toggler ham-btn" type="button" data-toggle="collapse">
           <span className="navbar-toggler-icon"></span>
         </button>
 
