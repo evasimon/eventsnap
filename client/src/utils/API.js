@@ -7,7 +7,7 @@ export default {
     },
     // change checked-in status
     checkIn: function (uuid, id) {
-        return axios.put(`/api/check-in/${uuid}/${id}`) ;
+        return axios.post(`/api/check-in/${uuid}/${id}`);
     },
     // // searches for articles from www.nytimes.com
     // search: function (query, startYear, endYear) {

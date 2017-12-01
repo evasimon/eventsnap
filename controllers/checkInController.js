@@ -2,7 +2,7 @@ const db = require("../models");
 
 // Defining methods for the attendeeController
 module.exports = {
-    
+
     update: function (req, res) {
         // console.log(req.params.uuid)
         db.Attendee
@@ -30,11 +30,11 @@ module.exports = {
                                         WorkshopId: req.params.id
                                     }
                                 })
-                                .then(result => res.json({success: true, result: result}))
+                                .then(result => res.json({ success: true, result: result }))
 
                         } else if (!workshop) {
                             console.log('workshop not found')
-                            res.json({success: false, error: 'workshop selection not found'})
+                            res.json({ success: false, error: 'workshop selection not found' })
                             // res.status(404).send('workshop selection not found');
                         } else {
                             console.log("you are already checked in")

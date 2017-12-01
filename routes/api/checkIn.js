@@ -10,6 +10,6 @@ const checkInController = require("../../controllers/checkInController");
 // Matches with "/api/attendees/:id"
 router
     .route("/:uuid/:id")
-    .put(checkInController.update);
+    .post(checkInController.update);
 
 module.exports = router;
