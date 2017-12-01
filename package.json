@@ -23,6 +23,7 @@
     "mysql2": "^1.5.1",
     "react-qr-reader": "^2.0.1",
     "react-router-dom": "^4.2.2",
+    "semantic-ui-react": "^0.77.0",
     "sequelize": "^4.22.15"
   }
 }

@@ -4,7 +4,10 @@
 import React, { Component } from "react";
 import BadgeGeneration from "../BadgeGeneration";
 import QRReader from "../QRReader"
-import Nav from "../../components/Nav";
+import MenuTop from "../../components/MenuTop";
+import EventHome from "../../pages/EventHome";
+import Home from "../Home";
+
 import {
     BrowserRouter as Router,
     Route,
@@ -19,12 +22,16 @@ class Main extends Component {
         return (
             <Router>
                 <div>
-                    <Nav />
+                    {/* <Nav /> */}
+                    {/* <MenuTop /> */}
                     <Switch>
-                        <Route exact path="/" component={BadgeGeneration} />
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/chicagotangofestival" component={EventHome} />
+                        <Route exact path="/badge-generation" component={BadgeGeneration} />
                         <Route exact path="/qr-reader" component={QRReader} />
                         {/* <Route component={NoMatch} /> */}
                     </Switch>
+                    {/* </Sidebar> */}
                 </div>
             </Router>
         )

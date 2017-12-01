@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
+import Dropdown from "../../components/Dropdown"
+import SaveBtn from "../../components/SaveBtn";
 import { Col, Row, Container } from "../../components/Grid";
 import QrReader from "react-qr-reader";
 import API from "../../utils/API";
+import { setTimeout } from "timers";
 
 
 class QRReader extends Component {
@@ -12,27 +15,27 @@ class QRReader extends Component {
         this.state = {
             delay: 300,
             result: 'No result',
-            checkInStatus: 0
+            checkedIn: false
         }
         this.handleScan = this.handleScan.bind(this)
     }
 
-    componentDidMount() {
-        console.log('Scaning mounted')
-        // handleScan(data)
-    }
-
-    componentWillUnmount() {
-        console.log('Scaning will unmount')
-    }
-
     handleScan(data) {
-        console.log(data)
         if (data) {
             this.setState({
-                result: data,
+                result: data
             })
-            this.handleCheckIn(data, 2)
+
+            setTimeout(function () {
+                this.setState({
+                    delay: 300,
+                    checkedIn: false
+                })
+            }.bind(this), 2000)
+
+            if (!this.checkedIn) {
+                this.handleCheckIn(data, 2)
+            }
         }
     }
 
@@ -46,17 +49,20 @@ class QRReader extends Component {
                 if (res.data.success) {
                     console.log(`${uuid} is checked in now to workshop ${id}`)
                     console.log('send me the data', res.data)
-                    console.log(res.data.result.workshop.checkedIn)
+                    // console.log(res.data.result.workshop.checkedIn)
+                    console.log("checked in successfully");
                     this.setState({
-                        checkInStatus: res.data.result.workshop.checkedIn
+                        checkedIn: true
                     })
-                    alert("checked in successfully");
                 } else {
-                    alert(res.data.error);
+                    console.log(res.data.error);
                 }
+                this.setState({
+                    delay: false
+                })
 
             })
-            .catch(err => console.log("err"));
+            .catch(err => console.log(err.respose));
     }
 
     render() {
@@ -65,6 +71,7 @@ class QRReader extends Component {
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
+                            <Dropdown/>
                             <QrReader
                                 delay={this.state.delay}
                                 onError={this.handleError}
@@ -72,7 +79,7 @@ class QRReader extends Component {
                                 style={{ width: '40%' }}
                             />
                             <p>{this.state.result}</p>
-                            <p>{this.state.checkInStatus}</p>
+                            {this.state.checkedIn ? <SaveBtn /> : null}
                         </Jumbotron>
                     </Col>
                 </Row>
