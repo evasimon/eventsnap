@@ -1,0 +1,8 @@
+.ui.modal .center-text.content {
+    text-align: center;
+    margin-top: 100px
+}
+
+.ui.modal .center-text.content p{
+    font-size: 28px;
+}

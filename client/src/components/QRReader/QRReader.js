@@ -6,12 +6,8 @@ import QrReader from "react-qr-reader";
 import API from "../../utils/API";
 import { setTimeout } from "timers";
 import { Dropdown, Grid, Segment, Button, Header, Icon, Modal } from 'semantic-ui-react'
+import './QRReader.css'
 
-const options = [
-    { key: 1, text: 'One', value: 1 },
-    { key: 2, text: 'Two', value: 2 },
-    { key: 3, text: 'Three', value: 3 },
-]
 
 class QRReader extends Component {
 
@@ -19,38 +15,29 @@ class QRReader extends Component {
         super(props)
         this.state = {
             delay: 300,
-            result: 'No result',
-            checkedIn: false,
-            value: 1,
-            modalOpen: false
+            modalOpen: false,
+            workshops: [],
+            options: [],
+            selectedWS: {},
+            msg: '',
+            iconName: '',
+            iconColor: ''
         }
         this.handleScan = this.handleScan.bind(this)
     }
 
-    getInitialState = () => {
-        return { value: 1 };
-    }
-
-    handleChange = (e, { value }) => this.setState({ value })
-
-
     handleScan(data) {
-        console.log(this.state.value);
         if (data) {
-            this.setState({
-                result: data
-            })
 
             setTimeout(function () {
                 this.setState({
                     delay: 300,
-                    checkedIn: false,
                     modalOpen: false
                 })
-            }.bind(this), 2000)
+            }.bind(this), 5000)
 
-            if (!this.checkedIn) {
-                this.handleCheckIn(data, this.state.value)
+            if (!this.modalOpen) {
+                this.handleCheckIn(data, this.state.selectedWS.id)
                 console.log('data and value sent')
             }
         }
@@ -65,14 +52,20 @@ class QRReader extends Component {
             .then(res => {
                 if (res.data.success) {
                     console.log(`${uuid} is checked in now to workshop ${id}`)
-                    console.log('send me the data', res.data)
-                    // console.log(res.data.result.workshop.checkedIn)
-                    console.log("checked in successfully");
+                    console.log("checked in successfully", res.data)
                     this.setState({
-                        checkedIn: true
+                        checkedIn: true,
+                        msg: 'Success',
+                        iconName: 'checkmark',
+                        iconColor: 'green'
                     })
                 } else {
                     console.log(res.data.error);
+                    this.setState({
+                        msg: res.data.error,
+                        iconName: 'x',
+                        iconColor: 'red'
+                    })
                 }
                 this.setState({
                     delay: false,
@@ -83,64 +76,83 @@ class QRReader extends Component {
             .catch(err => console.log(err.respose));
     }
 
-    handleOpen = () => this.setState({ modalOpen: true })
+    componentDidMount() {
+        this.loadWorkshops();
+    }
 
-    handleClose = () => this.setState({ modalOpen: false })
+    loadWorkshops = () => {
+        API.getWorkshops()
+            .then(workshops => {
+                this.setState({
+                    workshops: workshops.data,
+                    options: workshops.data.map(workshop => ({
+                        key: workshop.id,
+                        text: workshop.code,
+                        value: workshop.id
+                    }))
+                })
+            })
+            .catch(err => console.log(err.respose))
+    }
 
+    handleChange = (e, { value }) => {
+        for (var i = 0; i < this.state.workshops.length; i++) {
+            if (this.state.workshops[i].id === value) {
+                this.setState({ selectedWS: this.state.workshops[i] })
+            }
+        }
+    }
 
     render() {
 
         return (
             <div>
-                <Container textAlign='center'>
+                <Container>
                     <Row>
                         <Col size="md-12">
                             <Jumbotron>
-
-                                <Grid columns={2}>
-                                    <Grid.Column>
+                                <Grid>
+                                    <Grid.Column textAlign='center'>
                                         <Dropdown
+                                            textAlign='center'
                                             onChange={this.handleChange}
-                                            options={options}
+                                            options={this.state.options}
                                             placeholder='Choose an option'
                                             selection
                                             value={this.state.value}
                                         />
                                     </Grid.Column>
+                                </Grid>
+                                <Grid>
+                                    <Grid.Column>
+                                        <QrReader
+                                            delay={this.state.delay}
+                                            onError={this.handleError}
+                                            onScan={this.handleScan}
+                                            style={{
+                                                width: '100%',
+                                            }}
+                                            className={'centerBox'}
+                                        />
+                                    </Grid.Column>
+                                </Grid>
+                                <Grid>
                                     <Grid.Column>
                                         <Segment secondary>
-                                            <pre>Current value: {this.state.value}</pre>
+                                            <pre>{this.state.selectedWS.title}</pre>
                                         </Segment>
                                     </Grid.Column>
                                 </Grid>
 
-                                <QrReader
-                                    delay={this.state.delay}
-                                    onError={this.handleError}
-                                    onScan={this.handleScan}
-                                    style={{
-                                        width: '100%',
-                                    }}
-                                    className={'centerBox'}
-                                />
-                                <p>{this.state.result}</p>
-                                {/* {this.state.checkedIn ? <Modal /> : null} */}
-
                                 <Modal
                                     open={this.state.modalOpen}
-                                    // onClose={this.handleClose}
                                     basic
                                     size='small'
                                 >
-                                    <Header icon='browser' content='Cookies policy' />
-                                    <Modal.Content>
-                                        <h3>You are checked In, Name. Have Fun!</h3>
+                                    <Modal.Content className={'center-text'}>
+                                        <Icon name={this.state.iconName} size={'massive'} color={this.state.iconColor} />
+                                        <p>{this.state.msg}</p>
                                     </Modal.Content>
-                                    {/* <Modal.Actions>
-                                        <Button color='green' onClick={this.handleClose} inverted>
-                                            <Icon name='checkmark' /> Got it
-                                            </Button>
-                                    </Modal.Actions> */}
                                 </Modal>
                             </Jumbotron>
                         </Col>
