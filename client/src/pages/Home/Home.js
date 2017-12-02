@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
-
+import HomeNav from "../../components/HomeNav"
 
 class Home extends Component {
     state = {
@@ -17,33 +17,7 @@ class Home extends Component {
 
         return (
             <div>
-                <Menu fluid>
-                    <Menu.Item
-                        id="logo"
-                        name='reviews'
-                        active={activeItem === 'reviews'}
-                        onClick={this.handleMenuItemClick}
-                    >
-                        Event<span>Snap</span>
-                    </Menu.Item>
-                    <Menu.Menu position='right'>
-                        {/* <Menu.Item
-                        name='login'
-                        active={activeItem === 'login'}
-                        onClick={this.handleItemClick} /> */}
-                        <Menu.Item
-                            name='upcomingEvents'
-                            active={activeItem === 'upcomingEvents'}
-                            onClick={this.handleMenuItemClick}
-                        >
-                            <Image src='/assets/images/wireframe/square-image.png' avatar />
-                            <span>Username</span>
-                            <Icon name='log out' />
-                            Log Out
-        </Menu.Item>
-                    </Menu.Menu>
-
-                </Menu>
+                <HomeNav/>
                 <Grid container columns={2}>
                     <Grid.Column>
                         <a href='/chicagotangofestival'>
@@ -66,7 +40,7 @@ class Home extends Component {
                         </a>
                     </Grid.Column>
                 </Grid>
-            </div>
+            </div >
         )
     }
 }

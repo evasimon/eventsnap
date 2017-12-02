@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
-import BadgeGeneration from "../../pages/BadgeGeneration"
-import "./Sidebar.css"
+import QRReader from "../../components/QRReader"
 
-class SidebarLeftScaleDown extends Component {
+class CheckIn extends Component {
+
     state = {
         visible: false,
         activeItem: 'attendees'
@@ -46,9 +46,9 @@ class SidebarLeftScaleDown extends Component {
                             active={activeItem === 'upcomingEvents'}
                             onClick={this.handleMenuItemClick}
                         >
-                        <Icon name='qrcode' />
+                            <Icon name='qrcode' />
                             Scan
-        </Menu.Item>
+                    </Menu.Item>
                     </Menu.Menu>
 
                 </Menu>
@@ -71,11 +71,11 @@ class SidebarLeftScaleDown extends Component {
                             <Icon name='qrcode' />
                             Instuctors
                         </Menu.Item>
-                        <Menu.Item name='registration' active={activeItem === 'registration'} onClick={this.handleMenuItemClick}>
+                        <Menu.Item as='a' href='/chicagotangofestival/registration' name='registration' active={activeItem === 'registration'} onClick={this.handleMenuItemClick}>
                             <Icon name='pencil' />
                             Registration
                         </Menu.Item>
-                        <Menu.Item name='check-in' active={activeItem === 'check-in'} onClick={this.handleMenuItemClick}>
+                        <Menu.Item as='a' href='/chicagotangofestival/checkin' name='check-in' active={activeItem === 'check-in'} onClick={this.handleMenuItemClick}>
                             <Icon name='checkmark' />
                             Check-In
                         </Menu.Item>
@@ -84,8 +84,7 @@ class SidebarLeftScaleDown extends Component {
                     <Sidebar.Pusher>
                         <Segment inverted>
                             <Header as='h3'>Application Content</Header>
-                            <BadgeGeneration />
-                            <Image src='/assets/images/wireframe/paragraph.png' />
+                            <QRReader />
                         </Segment>
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
@@ -94,4 +93,4 @@ class SidebarLeftScaleDown extends Component {
     }
 }
 
-export default SidebarLeftScaleDown
+export default CheckIn

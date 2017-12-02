@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Sidebar from "../../components/Sidebar"
+import { Grid, Image } from 'semantic-ui-react'
+import EventNav from "../../components/EventNav"
 
 class EventHome extends Component {
 
@@ -7,8 +8,10 @@ class EventHome extends Component {
 
         return (
             <div>
-                <Sidebar />
-            </div>)
+                <EventNav />
+                
+            </div>
+        )
     }
 }
 

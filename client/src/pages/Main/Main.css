@@ -15,3 +15,7 @@ a {
 a:hover {
     color: #00a4df;
 }
+
+.container .centerBox {
+    margin: 0 auto;
+}

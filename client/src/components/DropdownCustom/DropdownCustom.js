@@ -7,7 +7,7 @@ const options = [
     { key: 3, text: 'Three', value: 3 },
 ]
 
-export default class DropdownControlled extends Component {
+export default class DropdownCustom extends Component {
     state = {}
 
     handleChange = (e, { value }) => this.setState({ value })
