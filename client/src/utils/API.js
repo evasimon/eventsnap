@@ -9,6 +9,11 @@ export default {
     checkIn: function (uuid, id) {
         return axios.post(`/api/check-in/${uuid}/${id}`);
     },
+
+    // gets all workshops
+    getWorkshops: function () {
+        return axios.get("/api/workshops");
+    },
     // // searches for articles from www.nytimes.com
     // search: function (query, startYear, endYear) {
     //     const startDate = startYear !== "" ? `&begin_date=${startYear}0101` : "";
