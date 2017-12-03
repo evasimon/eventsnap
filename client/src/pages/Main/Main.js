@@ -5,6 +5,8 @@ import EventNav from "../../components/EventNav"
 import Home from "../../pages/Home"
 import EventHome from "../../pages/EventHome"
 import Attendees from "../../pages/Attendees"
+import Workshops from "../../pages/Workshops"
+import WorkshopDetails from "../../pages/WorkshopDetails"
 import Registration from "../../pages/Registration"
 import CheckIn from "../../pages/CheckIn"
 import {
@@ -26,11 +28,10 @@ class Main extends Component {
                         <Route exact path="/" component={Home} />
                         <Route exact path="/chicagotangofestival" component={EventHome} />
                         <Route exact path="/chicagotangofestival/attendees" component={Attendees} />
-
-                        {/* route for attendees
-                        route for workshops */}
+                        <Route exact path="/chicagotangofestival/workshops" component={Workshops} />
+                        <Route exact path="/chicagotangofestival/workshop-details" component={WorkshopDetails} />
                         <Route exact path="/chicagotangofestival/registration" component={Registration} />
-                        <Route exact path="/chicagotangofestival/checkin" component={CheckIn}/>
+                        <Route exact path="/chicagotangofestival/checkin" component={CheckIn} />
                     </Switch>
                 </div>
             </Router>
