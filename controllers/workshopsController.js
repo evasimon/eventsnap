@@ -2,14 +2,6 @@ const db = require("../models");
 
 // Defining methods for the workshopsController
 module.exports = {
-    // writes the new workshop to the database
-    create: function (req, res) {
-        db.Workshop
-            .create(req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-
-    },
     // finds all the workshops in the database
     findAll: function (req, res) {
         console.log(req.body)
@@ -19,11 +11,30 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     // removes workshop from the database
-    remove: function (req, res) {
+    findWorkshop: function (req, res) {
+        // console.log('entered here')
         db.Workshop
-            .find({ where: { id: req.params.id } })
-            .then(dbModel => dbModel.destroy())
-            .then(dbModel => res.json(dbModel))
+            .findOne({
+                include: [{model: db.Instructor}],
+                where:
+                    {
+                        id: req.params.id
+                    }
+            })
+            .then(workshop => {
+                // console.log(workshop)
+                db.WorkshopSelection
+                    .findAll({
+                        where: {
+                            WorkshopId: req.params.id
+                        },
+                        include: [db.Attendee]
+                    })
+                    .then(result => {
+                        console.log(result)
+                        res.json({ workshop, result })
+                    })
+            })
             .catch(err => res.status(422).json(err));
     }
 }
