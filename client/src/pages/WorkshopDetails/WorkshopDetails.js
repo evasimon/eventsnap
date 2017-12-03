@@ -1,16 +1,54 @@
 import React, { Component } from 'react'
 import { Container, Segment, Grid, Image, Icon, Header, List, Progress, Statistic } from 'semantic-ui-react'
 import './WorkshopDetails.css'
+import API from "../../utils/API";
+
 
 class WorkshopDetails extends Component {
 
     state = {
-        visible: false,
-        activeItem: 'attendees'
+        workshopCode: "",
+        workshopTitle: "",
+        instuctorName: "",
+        totalLead: 0,
+        totalFollower: 0,
+        listCheckLead: [],
+        listCheckFollower: []
     }
 
-    toggleVisibility = () => this.setState({ visible: !this.state.visible })
-    handleMenuItemClick = (e, { name }) => this.setState({ activeItem: name })
+    componentDidMount = () => {
+        this.getOneWorkshop(2)
+    }
+
+    getOneWorkshop = (id) => {
+        API.getOneWorkshop(id)
+            .then(res => {
+                console.log(res.data)
+
+                const totalLead = res.data.result.filter(obj => obj.Attendee.dancerType == "L").length
+                const totalFollower = res.data.result.filter(obj => obj.Attendee.dancerType == "F").length
+
+                const listCheckLead = res.data.result
+                    .filter(obj => obj.Attendee.dancerType == "L" && obj.checkedIn)
+                    .map(obj => obj.Attendee)
+
+                const listCheckFollower = res.data.result
+                    .filter(obj => obj.Attendee.dancerType == "F" && obj.checkedIn)
+                    .map(obj => obj.Attendee)
+
+
+                this.setState({
+                    workshopCode: res.data.workshop.code,
+                    workshopTitle: res.data.workshop.title,
+                    instuctorName: res.data.workshop.Instructor.firstName,
+                    totalLead,
+                    totalFollower,
+                    listCheckLead,
+                    listCheckFollower
+                })
+            })
+            .catch(err => console.log(err.respose));
+    }
 
     render() {
         const { visible } = this.state
@@ -21,17 +59,12 @@ class WorkshopDetails extends Component {
 
                 <Container fluid>
                     <Segment inverted padded='very'>
-                        <Progress value='3' total='5' progress='ratio' inverted />
-                        {/* Leads */}
-                        {/* </Progress> */}
-
                         <List divided inverted relaxed>
                             <List.Item>
                                 <List.Content>
-                                    <List.Header>Workshop Title2</List.Header>
-                                    Date
-                                    Instructor
-
+                                    <List.Header>{this.state.workshopCode}: {this.state.workshopTitle}</List.Header>
+                                    {/* Date */}
+                                    Instructors: {this.state.instuctorName}
                                 </List.Content>
                             </List.Item>
                         </List>
@@ -40,32 +73,27 @@ class WorkshopDetails extends Component {
 
                         <Statistic.Group widths='four' inverted>
                             <Statistic>
-                                <Statistic.Value>22</Statistic.Value>
-                                <Statistic.Label>Saves</Statistic.Label>
+                                <Statistic.Value>{this.state.totalLead}</Statistic.Value>
+                                <Statistic.Label>Total Leads</Statistic.Label>
                             </Statistic>
-
                             <Statistic>
-                                <Statistic.Value text>
-                                    Three
-        <br />Thousand
-      </Statistic.Value>
-                                <Statistic.Label>Signups</Statistic.Label>
+                                <Statistic.Value>{this.state.totalFollower}</Statistic.Value>
+                                <Statistic.Label>Total Followers</Statistic.Label>
                             </Statistic>
 
                             <Statistic>
                                 <Statistic.Value>
-                                    <Icon name='plane' />
-                                    5
-      </Statistic.Value>
-                                <Statistic.Label>Flights</Statistic.Label>
+                                    <Icon name='checkmark' />
+                                    {this.state.listCheckLead.length + this.state.listCheckFollower.length}
+                            </Statistic.Value>
+                                <Statistic.Label>Check Ins</Statistic.Label>
                             </Statistic>
 
                             <Statistic>
                                 <Statistic.Value>
-                                    <Image src='/assets/images/avatar/small/joe.jpg' className='circular inline' />
-                                    42
-      </Statistic.Value>
-                                <Statistic.Label>Team Members</Statistic.Label>
+                                    40
+                            </Statistic.Value>
+                                <Statistic.Label>Capacity</Statistic.Label>
                             </Statistic>
                         </Statistic.Group>
                     </Segment>
@@ -73,10 +101,26 @@ class WorkshopDetails extends Component {
                     <Grid divided='vertically'>
                         <Grid.Row columns={2}>
                             <Grid.Column>
-                                Followers
+                                <Progress value={this.state.listCheckLead.length} total={this.state.totalLead} progress='ratio' inverted />
+                                Leads
+                                <List divided inverted relaxed>
+                                    {this.state.listCheckLead.map(obj =>
+                                        <List.Item>
+                                            {obj.firstName} {obj.firstName}
+                                        </List.Item>
+                                    )}
+                                </List>
                             </Grid.Column>
                             <Grid.Column>
-                                Leads
+                                <Progress value={this.state.listCheckFollower.length} total={this.state.totalFollower} progress='ratio' inverted />
+                                Follower
+                                <List divided inverted relaxed>
+                                    {this.state.listCheckFollower.map(obj =>
+                                        <List.Item>
+                                            {obj.firstName} {obj.firstName}
+                                        </List.Item>
+                                    )}
+                                </List>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

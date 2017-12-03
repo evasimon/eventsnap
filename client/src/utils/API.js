@@ -14,6 +14,11 @@ export default {
     getWorkshops: function () {
         return axios.get("/api/workshops");
     },
+
+    // gets all workshops
+    getOneWorkshop: function (id) {
+        return axios.get(`/api/workshops/${id}`);
+    }
     // // searches for articles from www.nytimes.com
     // search: function (query, startYear, endYear) {
     //     const startDate = startYear !== "" ? `&begin_date=${startYear}0101` : "";
