@@ -31,7 +31,7 @@ module.exports = {
                         include: [db.Attendee]
                     })
                     .then(result => {
-                        console.log(result)
+                        // console.log(result)
                         res.json({ workshop, result })
                     })
             })

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Container, Segment, Grid, Image, Icon, Header, List, Progress, Statistic } from 'semantic-ui-react'
 import './WorkshopDetails.css'
 import API from "../../utils/API";
+import openSocket from 'socket.io-client';
 
 
 class WorkshopDetails extends Component {
@@ -17,7 +18,19 @@ class WorkshopDetails extends Component {
     }
 
     componentDidMount = () => {
+        const socket = openSocket();
         this.getOneWorkshop(2)
+        const self = this;
+        socket.on('checkedIn', function (id) {
+            // alert('Someone Checked In into workshop: ' + id);
+            self.getOneWorkshop(id)
+        });
+
+        socket.on('checkin', function (title) {
+            // console.log('article title saved: ' + title);
+            alert('Article title saved: ' + title);
+        });
+        console.log('data and value sent')
     }
 
     getOneWorkshop = (id) => {
@@ -29,11 +42,11 @@ class WorkshopDetails extends Component {
                 const totalFollower = res.data.result.filter(obj => obj.Attendee.dancerType == "F").length
 
                 const listCheckLead = res.data.result
-                    .filter(obj => obj.Attendee.dancerType == "L" && obj.checkedIn)
+                    .filter(obj => obj.Attendee.dancerType === "L" && obj.checkedIn)
                     .map(obj => obj.Attendee)
 
                 const listCheckFollower = res.data.result
-                    .filter(obj => obj.Attendee.dancerType == "F" && obj.checkedIn)
+                    .filter(obj => obj.Attendee.dancerType === "F" && obj.checkedIn)
                     .map(obj => obj.Attendee)
 
 
@@ -85,7 +98,7 @@ class WorkshopDetails extends Component {
                                 <Statistic.Value>
                                     <Icon name='checkmark' />
                                     {this.state.listCheckLead.length + this.state.listCheckFollower.length}
-                            </Statistic.Value>
+                                </Statistic.Value>
                                 <Statistic.Label>Check Ins</Statistic.Label>
                             </Statistic>
 
