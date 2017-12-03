@@ -7,6 +7,9 @@ import API from "../../utils/API";
 import { setTimeout } from "timers";
 import { Dropdown, Grid, Segment, Button, Header, Icon, Modal } from 'semantic-ui-react'
 import './QRReader.css'
+import openSocket from 'socket.io-client';
+
+const socket = openSocket();
 
 
 class QRReader extends Component {
@@ -38,7 +41,7 @@ class QRReader extends Component {
 
             if (!this.modalOpen) {
                 this.handleCheckIn(data, this.state.selectedWS.id)
-                console.log('data and value sent')
+
             }
         }
     }
@@ -59,6 +62,7 @@ class QRReader extends Component {
                         iconName: 'checkmark',
                         iconColor: 'green'
                     })
+                    socket.emit('checkIn', id);
                 } else {
                     console.log(res.data.error);
                     this.setState({
