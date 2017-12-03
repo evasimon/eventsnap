@@ -19,18 +19,13 @@ class WorkshopDetails extends Component {
 
     componentDidMount = () => {
         const socket = openSocket();
-        this.getOneWorkshop(2)
+        const id = this.props.match.params.id;
+        this.getOneWorkshop(id)
         const self = this;
         socket.on('checkedIn', function (id) {
             // alert('Someone Checked In into workshop: ' + id);
             self.getOneWorkshop(id)
         });
-
-        socket.on('checkin', function (title) {
-            // console.log('article title saved: ' + title);
-            alert('Article title saved: ' + title);
-        });
-        console.log('data and value sent')
     }
 
     getOneWorkshop = (id) => {

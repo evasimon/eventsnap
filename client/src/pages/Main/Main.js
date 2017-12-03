@@ -26,12 +26,12 @@ class Main extends Component {
                     {/* <EventNav /> */}
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route exact path="/chicagotangofestival" component={EventHome} />
-                        <Route exact path="/chicagotangofestival/attendees" component={Attendees} />
-                        <Route exact path="/chicagotangofestival/workshops" component={Workshops} />
-                        <Route exact path="/chicagotangofestival/workshop-details" component={WorkshopDetails} />
-                        <Route exact path="/chicagotangofestival/registration" component={Registration} />
-                        <Route exact path="/chicagotangofestival/checkin" component={CheckIn} />
+                        <Route exact path="/event" component={EventHome} />
+                        <Route exact path="/event/attendees" component={Attendees} />
+                        <Route exact path="/event/workshops" component={Workshops} />
+                        <Route path="/event/workshops/:id" component={WorkshopDetails} />
+                        <Route exact path="/event/registration" component={Registration} />
+                        <Route exact path="/event/checkin" component={CheckIn} />
                     </Switch>
                 </div>
             </Router>

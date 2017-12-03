@@ -6,7 +6,7 @@ module.exports = {
     findAll: function (req, res) {
         console.log(req.body)
         db.Workshop
-            .findAll()
+            .findAll({ include: [{ model: db.Instructor }]})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
