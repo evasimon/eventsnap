@@ -34,14 +34,16 @@ class BadgeGeneration extends Component {
                                 .attendees
                                 .map(attendee => (
                                     <List.Item key={attendee.id} className='card'>
-                                        <Image className="qrImage"
-                                            // src= 
-                                            // { `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${attendee.uuid}`}
+                                        <Image
+                                            className="qrImage"
+                                            src=
+                                            { `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${attendee.uuid}`}
                                             size='small'
                                             alt="this is a unique QR code"/>
                                         < List.Content >
                                             <List.Header as='h2'>
-                                                {attendee.firstName} {attendee.lastName}
+                                                {attendee.firstName}
+                                                {attendee.lastName}
                                             </List.Header>
                                             <List.Description>
                                                 <List>
