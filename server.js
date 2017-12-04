@@ -42,9 +42,9 @@ io.on('connection', function (socket) {
     // uses broadcast flag
     socket.broadcast.emit('checkedIn', id);
   });
-  socket.on('disconnect', function () {
-    console.log('Got disconnect!');
-  });
+  // socket.on('disconnect', function () {
+  //   console.log('Got disconnect!');
+  // });
 });
 
 // syncs the sequelize models and then connects the Express app
