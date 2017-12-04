@@ -1,9 +1,5 @@
 import React, {Component} from 'react'
-import {
-    Container,
-    List,
-    Icon
-} from 'semantic-ui-react'
+import {Container, List} from 'semantic-ui-react'
 import API from "../../utils/API";
 
 export default class Attendees extends Component {
@@ -36,8 +32,8 @@ export default class Attendees extends Component {
                                 .state
                                 .attendees
                                 .map(attendee => (
-                                    <List.Item className='card'>
-                                        <List.Icon name='check mark' size='big' verticalAlign='middle' color={'grey'}/>
+                                    <List.Item className='card' key={attendee.id}>
+                                        <List.Icon name='checkmark' size='big' verticalAlign='middle' color={'grey'}/>
                                         <List.Content>
                                             <List.Header as='h2'>
                                                 {attendee.firstName}

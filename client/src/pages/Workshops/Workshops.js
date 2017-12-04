@@ -34,10 +34,9 @@ class Workshops extends Component {
                                     .workshops
                                     .map(workshop => (
                                         <List.Item className='card' key={workshop.id}>
-                                            <List.Icon name='check mark' size='big' verticalAlign='middle' color={'grey'}/>
                                             <List.Content>
                                                 <List.Header as="h2">
-                                                    < a href={"/event/workshops/" + workshop.id}>
+                                                    <a href={"/event/workshops/" + workshop.id}>
                                                         {workshop.code}: {workshop.title}
                                                     </a>
                                                 </List.Header>

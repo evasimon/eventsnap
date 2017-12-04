@@ -28,7 +28,7 @@ class CheckIn extends Component {
             selectedWS: {},
             msg: '',
             iconName: '',
-            iconColor: ''
+            iconColor: 'grey'
         }
         this.handleScan = this
             .handleScan
@@ -76,9 +76,9 @@ class CheckIn extends Component {
         this.loadWorkshops();
     }
 
-    componentWillUnmount() {
-        socket.disconnect();
-    }
+    // componentWillUnmount() {
+    //     socket.disconnect();
+    // }
 
     loadWorkshops = () => {
         API
@@ -110,7 +110,7 @@ class CheckIn extends Component {
                     <Grid>
                         <Grid.Column textAlign='center'>
                             <Dropdown
-                                textAlign='center'
+                                // textAlign='center'
                                 onChange={this.handleChange}
                                 options={this.state.options}
                                 placeholder='Choose an option'

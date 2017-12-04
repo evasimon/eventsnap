@@ -65,6 +65,10 @@ body {
     background-color: #2d3948;
 }
 
+ui.inverted.four.statistics.card {
+    background-color: #2d3948;
+}
+
 /* .container .centerBox {
     margin: 0 auto;
 } */

@@ -2,24 +2,15 @@
 // navigation.
 
 import React, {Component} from "react"
-import {
-    Sidebar,
-    Segment,
-    Button,
-    Menu,
-    Image,
-    Icon,
-    Header,
-    Grid
-} from 'semantic-ui-react'
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import {Sidebar, Segment, Menu, Icon} from 'semantic-ui-react'
+import {BrowserRouter as Router, Route, Switch, Link, NavLink} from 'react-router-dom'
 import Home from "../../pages/Home"
 import Attendees from "../../pages/Attendees"
 import Workshops from "../../pages/Workshops"
 import WorkshopDetails from "../../pages/WorkshopDetails"
 import Registration from "../../pages/Registration"
 import CheckIn from "../../pages/CheckIn"
-import BadgeGeneration from "../../pages/BadgeGeneration"
+// import BadgeGeneration from "../../pages/BadgeGeneration"
 import "./Main.css";
 
 class Main extends Component {
@@ -62,11 +53,12 @@ class Main extends Component {
                                 <Icon name='home'/>
                                 Home
                             </Menu.Item>
-                            <Menu.Item as={Link} to='/event/attendees' name='attendees'>
+                            {/* <Menu.Item as={NavLink} to='/event/attendees' name='attendees'> */}
+                            <Menu.Item as='a' href='/event/attendees' name='attendees'>
                                 <Icon name='users'/>
                                 Attendees
                             </Menu.Item>
-                            <Menu.Item as={Link} to='/event/workshops' name='workshops'>
+                            <Menu.Item as={NavLink} to='/event/workshops' name='workshops'>
                                 <Icon name='qrcode'/>
                                 Workshops
                             </Menu.Item>
@@ -87,8 +79,7 @@ class Main extends Component {
                                     <Route exact path="/event/workshops" component={Workshops}/>
                                     <Route path="/event/workshops/:id" component={WorkshopDetails}/>
                                     <Route exact path="/event/registration" component={Registration}/>
-                                    <Route exact path="/event/checkin" component={CheckIn}/>
-                                    <Route exact path="/event/badgegeneration" component={BadgeGeneration}/>
+                                    <Route exact path="/event/checkin" component={CheckIn}/> {/* <Route exact path="/event/badgegeneration" component={BadgeGeneration}/> */}
                                 </Switch>
                             </Segment>
                         </Sidebar.Pusher>

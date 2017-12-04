@@ -28,7 +28,7 @@ class Registration extends Component {
             selectedWS: {},
             msg: '',
             iconName: '',
-            iconColor: ''
+            iconColor: 'grey'
         }
         this.handleScan = this
             .handleScan
@@ -103,17 +103,7 @@ class Registration extends Component {
         return (
             <div>
                 <Container>
-                    <Grid>
-                        <Grid.Column textAlign='center'>
-                            <Dropdown
-                                textAlign='center'
-                                onChange={this.handleChange}
-                                options={this.state.options}
-                                placeholder='Choose an option'
-                                selection
-                                value={this.state.value}/>
-                        </Grid.Column>
-                    </Grid>
+                    <Header as="h2">Please Scan QR Code</Header>
                     <Grid>
                         <Grid.Column>
                             <QrReader
@@ -124,13 +114,6 @@ class Registration extends Component {
                                 width: '100%'
                             }}
                                 className={'centerBox'}/>
-                        </Grid.Column>
-                    </Grid>
-                    <Grid>
-                        <Grid.Column>
-                            <Segment secondary>
-                                <pre>{this.state.selectedWS.title}</pre>
-                            </Segment>
                         </Grid.Column>
                     </Grid>
 
