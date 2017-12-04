@@ -1,6 +1,7 @@
-// * **Main** - contains the main-container div that holds the main layout and navigation. 
+// * **Main** - contains the main-container div that holds the main layout and
+// navigation.
 
-import React, { Component } from "react"
+import React, {Component} from "react"
 import EventNav from "../../components/EventNav"
 import Home from "../../pages/Home"
 import EventHome from "../../pages/EventHome"
@@ -10,31 +11,132 @@ import WorkshopDetails from "../../pages/WorkshopDetails"
 import Registration from "../../pages/Registration"
 import CheckIn from "../../pages/CheckIn"
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch
-} from 'react-router-dom'
+    Sidebar,
+    Segment,
+    Button,
+    Menu,
+    Image,
+    Icon,
+    Header,
+    Grid
+} from 'semantic-ui-react'
+
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 import "./Main.css";
 
 class Main extends Component {
+    state = {
+        visible: false,
+        activeItem: 'home'
+    }
+
+    toggleVisibility = () => this.setState({
+        visible: !this.state.visible
+    })
 
     render() {
+        const {visible} = this.state
+        const {activeItem} = this.state
         return (
             <Router>
                 <div>
-                    {/* <EventNav /> */}
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route exact path="/event" component={EventHome} />
-                        <Route exact path="/event/attendees" component={Attendees} />
-                        <Route exact path="/event/workshops" component={Workshops} />
-                        <Route path="/event/workshops/:id" component={WorkshopDetails} />
-                        <Route exact path="/event/registration" component={Registration} />
-                        <Route exact path="/event/checkin" component={CheckIn} />
-                    </Switch>
+                    <Menu fluid widths={3}>
+                        <Menu.Item
+                            name='menu'
+                            active={activeItem === 'menu'}
+                            onClick={this.toggleVisibility}>
+                            <Icon name='sidebar'/>
+                            Menu
+                        </Menu.Item>
+                        <Menu.Item
+                            id="logo"
+                            as='a'
+                            href="/"
+                            name='logo'
+                            active={activeItem === 'logo'}
+                            onClick={this.handleMenuItemClick}>
+                            Event<span>Snap</span>
+                        </Menu.Item>
+                        <Menu.Item
+                            name='scan'
+                            active={activeItem === 'scan'}
+                            onClick={this.handleMenuItemClick}>
+                            <Icon name='qrcode'/>
+                            Check-In
+                        </Menu.Item>
+                    </Menu>
+                    <Sidebar.Pushable as={Segment}>
+                        <Sidebar
+                            as={Menu}
+                            animation='push'
+                            width='thin'
+                            visible={visible}
+                            icon='labeled'
+                            vertical
+                            inverted>
+                            <Menu.Item
+                                as='a'
+                                href='/'
+                                name='home'
+                                active={activeItem === 'home'}
+                                onClick={this.handleMenuItemClick}>
+                                <Icon name='home'/>
+                                Home
+                            </Menu.Item>
+                            <Menu.Item
+                                as='a'
+                                href='/event/attendees'
+                                name='attendees'
+                                active={activeItem === 'attendees'}
+                                onClick={this.handleMenuItemClick}>
+                                <Icon name='users'/>
+                                Attendees
+                            </Menu.Item>
+                            <Menu.Item
+                                as='a'
+                                href='/event/workshops'
+                                name='workshops'
+                                active={activeItem === 'workshops'}
+                                onClick={this.handleMenuItemClick}>
+                                <Icon name='qrcode'/>
+                                Workshops
+                            </Menu.Item>
+                            <Menu.Item
+                                as='a'
+                                href='/event/registration'
+                                name='registration'
+                                active={activeItem === 'registration'}
+                                onClick={this.handleMenuItemClick}>
+                                <Icon name='pencil'/>
+                                Registration
+                            </Menu.Item>
+                            <Menu.Item
+                                as='a'
+                                href="/event/checkin"
+                                name='check-in'
+                                active={activeItem === 'check-in'}
+                                onClick={this.handleMenuItemClick}>
+                                <Icon name='checkmark'/>
+                                Check-In
+                            </Menu.Item>
+                        </Sidebar>
+                        <Sidebar.Pusher>
+                            <Segment basic>
+                                <Switch>
+                                    <Route exact path="/" component={Home}/>
+                                    <Route exact path="/event" component={EventHome}/>
+                                    <Route exact path="/event/attendees" component={Attendees}/>
+                                    <Route exact path="/event/workshops" component={Workshops}/>
+                                    <Route path="/event/workshops/:id" component={WorkshopDetails}/>
+                                    <Route exact path="/event/registration" component={Registration}/>
+                                    <Route exact path="/event/checkin" component={CheckIn}/>
+                                </Switch>
+                            </Segment>
+                        </Sidebar.Pusher>
+                    </Sidebar.Pushable>
                 </div>
-            </Router>
+            </Router >
         )
     }
 }
