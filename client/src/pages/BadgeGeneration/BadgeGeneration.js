@@ -26,12 +26,6 @@ class BadgeGeneration extends Component {
             .catch(err => console.log(err))
     }
 
-    deleteArticle = (id) => {
-        API.deleteArticle(id)
-            .then(res => this.loadSavedArticles())
-            .catch(err => console.log(err));
-    }
-
     render() {
         return (
             <Container>
