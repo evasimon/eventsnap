@@ -19,6 +19,7 @@ import Workshops from "../../pages/Workshops"
 import WorkshopDetails from "../../pages/WorkshopDetails"
 import Registration from "../../pages/Registration"
 import CheckIn from "../../pages/CheckIn"
+import BadgeGeneration from "../../pages/BadgeGeneration"
 import "./Main.css";
 
 class Main extends Component {
@@ -87,6 +88,7 @@ class Main extends Component {
                                     <Route path="/event/workshops/:id" component={WorkshopDetails}/>
                                     <Route exact path="/event/registration" component={Registration}/>
                                     <Route exact path="/event/checkin" component={CheckIn}/>
+                                    <Route exact path="/event/badgegeneration" component={BadgeGeneration}/>
                                 </Switch>
                             </Segment>
                         </Sidebar.Pusher>

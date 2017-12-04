@@ -1,9 +1,6 @@
-import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
+import React, {Component} from "react";
+import {Container, List, Image} from 'semantic-ui-react'
 import API from "../../utils/API";
-
 
 class BadgeGeneration extends Component {
     state = {
@@ -15,12 +12,11 @@ class BadgeGeneration extends Component {
     }
 
     loadAttendees = () => {
-        API.getAttendees()
+        API
+            .getAttendees()
             .then(res => {
                 console.log(res)
-                this.setState({
-                    attendees: res.data
-                })
+                this.setState({attendees: res.data})
             })
             .catch(err => console.log(err))
     }
@@ -28,31 +24,47 @@ class BadgeGeneration extends Component {
     render() {
         return (
             <Container>
-                <Row>
-                    <Col size="md-12">
-                        <Jumbotron>
-                            <h2>Badges</h2>
+                <h2>Badges</h2>
 
-                            {this.state.attendees.length ? (
-                                <List>
-                                    {this.state.attendees.map(attendee => (
-                                        <ListItem key={attendee.id}>
-                                            <a href="">
-                                                <strong>
-                                                    {attendee.firstName} {attendee.lastName}
-                                                </strong>
-                                                <img src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${attendee.uuid}`} alt="this is a unique QR code" />
-                                            </a>
-                                            {/* <DeleteBtn onClick={() => this.deleteArticle(attendee._id)} /> */}
-                                        </ListItem>
-                                    ))}
-                                </List>
-                            ) : (
-                                    <h3>No Results to Display</h3>
-                                )}
-                        </Jumbotron>
-                    </Col>
-                </Row>
+                {this.state.attendees.length
+                    ? (
+                        <List divided inverted relaxed className='one-card'>
+                            {this
+                                .state
+                                .attendees
+                                .map(attendee => (
+                                    <List.Item key={attendee.id} className='card'>
+                                        <Image className="qrImage"
+                                            // src= 
+                                            // { `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${attendee.uuid}`}
+                                            size='small'
+                                            alt="this is a unique QR code"/>
+                                        < List.Content >
+                                            <List.Header as='h2'>
+                                                {attendee.firstName} {attendee.lastName}
+                                            </List.Header>
+                                            <List.Description>
+                                                <List>
+                                                    <List.Item icon='users' content='Dancer Type'/>
+                                                    <List.Item icon='marker' content='New York, NY'/>
+                                                    <List.Item
+                                                        icon='mail'
+                                                        content=
+                                                        {<a href='mailto:jack@semantic-ui.com'> jack@semantic - ui.com </a>}/>
+                                                    <List.Item
+                                                        icon='linkify'
+                                                        content=
+                                                        {<a href='http://www.semantic-ui.com'> semantic-ui.com </a>}/>
+                                                </List>
+                                            </List.Description>
+                                        </List.Content>
+                                    </List.Item>
+                                ))}
+                        </List>
+                    )
+                    : (
+                        <h3>No Results to Display</h3>
+                    )}
             </Container>
         )
     }

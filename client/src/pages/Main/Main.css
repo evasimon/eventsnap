@@ -77,3 +77,7 @@ body {
 .ui.modal .center-text.content p{
     font-size: 28px;
 }
+
+.ui.small.image.qrImage{
+    margin-right: 30px;
+}
