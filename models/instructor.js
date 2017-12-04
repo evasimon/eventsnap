@@ -1,23 +1,24 @@
-// creates an Instructor model and
-// adds validation to the model
+// creates an Instructor model and adds validation to the model
 module.exports = function (sequelize, DataTypes) {
     var Instructor = sequelize.define("Instructor", {
-        // giving the Instructor model a name of type STRING
-        firstName: {
+        // giving the Instructor model names of type STRING
+        coupleName: {
             type: DataTypes.STRING,
             allowNull: false,
-            // the Instructor's first name cannot be null
+            // the Instructor's names cannot be null
             validate: {
-                len: [1, 50]
+                len: [1, 100]
             }
         },
-        lastName: {
-            type: DataTypes.STRING,
+        createdAt: {
+            type: DataTypes.DATE,
             allowNull: false,
-            // the Instructor's last name cannot be null
-            validate: {
-                len: [1, 50]
-            }
+            defaultValue: sequelize.fn('NOW')
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.fn('NOW')
         }
     });
 

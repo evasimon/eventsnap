@@ -1,5 +1,4 @@
-// creates an Attendee model and
-// adds validation to the model
+// creates an Attendee model and adds validation to the model
 module.exports = function (sequelize, DataTypes) {
     var Attendee = sequelize.define("Attendee", {
         // giving the Attendee model a name of type STRING
@@ -19,25 +18,76 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1, 50]
             }
         },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            // the Attendee's last name cannot be null
+            validate: {
+                len: [1, 50]
+            }
+        },
+        city: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            // the Attendee's last name cannot be null
+            validate: {
+                len: [1, 50]
+            }
+        },
+        state: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            // the Attendee's last name cannot be null
+            validate: {
+                len: [1, 50]
+            }
+        },
         uuid: {
-            // the Attendee's unique identifier
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV1,
-            allowNull: false,
-
+            allowNull: false
         },
         dancerType: {
+            // the Attendee's dancerType: Lead or Follower
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1, 12]
             }
+        },
+        emailSent: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+
+        },
+        formCompleted: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+
+        },
+        badgePrinted: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+
+        },
+        registered: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.fn('NOW')
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize.fn('NOW')
         }
     });
 
     Attendee.associate = function (models) {
-        // each Attendee belongs to an EventPass
-        // sets Room as foreign key constraint
+        // each Attendee belongs to a PassType sets PassType as foreign key constraint
         Attendee.belongsTo(models.PassType, {
             foreignKey: {
                 allowNull: false
