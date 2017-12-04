@@ -17,7 +17,7 @@ class Home extends Component {
                         Register
                     </Button>
                     <Button.Or/>
-                    <Button positive as={Link} to='/event/registration'>
+                    <Button positive as={Link} to='/event/checkin'>
                         Check-In
                     </Button>
                 </Button.Group>

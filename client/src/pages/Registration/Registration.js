@@ -73,7 +73,7 @@ class Registration extends Component {
         return (
             <div>
                 <Container>
-                    <Header as="h2">Please Scan QR Code</Header>
+                    <Header as="h2" inverted textAlign="center">Please Scan QR Code</Header>
                     <Grid>
                         <Grid.Column>
                             <QrReader
