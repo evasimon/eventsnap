@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
-import { Container, Segment, Button, Menu, Image, Icon, Header, List } from 'semantic-ui-react'
-import './Workshops.css'
+import React, {Component} from 'react'
+import {Container, List} from 'semantic-ui-react'
 import API from "../../utils/API";
-
 
 class Workshops extends Component {
 
@@ -14,12 +12,11 @@ class Workshops extends Component {
     }
 
     loadWorkshops = () => {
-        API.getWorkshops()
+        API
+            .getWorkshops()
             .then(workshops => {
                 console.log(workshops)
-                this.setState({
-                    workshops: workshops.data
-                })
+                this.setState({workshops: workshops.data})
             })
             .catch(err => console.log(err));
     }
@@ -28,27 +25,46 @@ class Workshops extends Component {
 
         return (
             <div>
-                <Container fluid>
-                    <Segment inverted padded='very'>
-                        {this.state.workshops.length ? (
-                            <List divided inverted relaxed>
-                                {this.state.workshops.map(workshop => (
-                                    <List.Item key={workshop.id}>
-                                        <List.Content>
-                                            <List.Header as='a' href={"/event/workshops/" + workshop.id} >
-                                            {workshop.code}: {workshop.title}
-                                            </List.Header>
-                                            {/* Date & Time: */}
-                                            Instructors: {workshop.Instructor.lastName}
-                                        </List.Content>
-                                    </List.Item>
-                                ))}
-                            </List>
-                        ) : (
-                                <h3>No Results to Display</h3>
-                            )}
+                <Container>
+                    {this.state.workshops.length
+                        ? (
+                            <List divided inverted relaxed className='one-card'>
+                                {this
+                                    .state
+                                    .workshops
+                                    .map(workshop => (
+                                        <List.Item className='card' key={workshop.id}>
+                                            <List.Icon name='check mark' size='big' verticalAlign='middle' color={'grey'}/>
+                                            <List.Content>
+                                                <List.Header as="h2">
+                                                    < a href={"/event/workshops/" + workshop.id}>
+                                                        {workshop.code}: {workshop.title}
+                                                    </a>
+                                                </List.Header>
+                                                <List.Description>
+                                                    <List>
+                                                        <List.Item icon='users' content='Dancer Type'/>
+                                                        <List.Item icon='marker' content='New York, NY'/>
+                                                        <List.Item
+                                                            icon='mail'
+                                                            content=
+                                                            {<a href='mailto:jack@semantic-ui.com'> jack@semantic - ui.com </a>}/>
+                                                        <List.Item
+                                                            icon='linkify'
+                                                            content=
+                                                            {<a href='http://www.semantic-ui.com'> semantic-ui.com </a>}/>
+                                                    </List>
+                                                </List.Description>
+                                            </List.Content>
+                                        </List.Item>
+                                    ))}
 
-                    </Segment>
+                            </List>
+                        )
+                        : (
+                            <h3>No Results to Display</h3>
+                        )
+}
                 </Container>
             </div >
         )

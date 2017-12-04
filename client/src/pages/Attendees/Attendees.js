@@ -36,11 +36,12 @@ export default class Attendees extends Component {
                                 .state
                                 .attendees
                                 .map(attendee => (
-                                    <List.Item>
-                                        <List.Icon name='check mark' size='large' verticalAlign='middle' color={'grey'}/>
+                                    <List.Item className='card'>
+                                        <List.Icon name='check mark' size='big' verticalAlign='middle' color={'grey'}/>
                                         <List.Content>
                                             <List.Header as='h2'>
                                                 {attendee.firstName}
+
                                                 {attendee.lastName}
                                             </List.Header>
                                             <List.Description>
