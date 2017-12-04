@@ -12,6 +12,19 @@ body {
     border-radius: 0;
 }
 
+.ui.fluid.three.item.menu #logo {
+    font-family: 'Kalam', cursive;
+    font-size: 24px;
+}
+
+#logo span{
+    color: #f95f7b
+}
+
+.ui.fluid.three.item.menu .item{
+        font-size: 18px;
+}
+
 .ui.segment.pushable {
     background-color: #1a232c;
     min-height:50em;
@@ -46,7 +59,7 @@ body {
     background-color: #000
 } */
 
-.ui.divided.inverted.list.one-card {
+.ui.divided.inverted.list .item.card {
     padding: 20px;
     margin-bottom: 20px;
     background-color: #2d3948;
@@ -55,3 +68,12 @@ body {
 /* .container .centerBox {
     margin: 0 auto;
 } */
+
+.ui.modal .center-text.content {
+    text-align: center;
+    margin-top: 100px
+}
+
+.ui.modal .center-text.content p{
+    font-size: 28px;
+}

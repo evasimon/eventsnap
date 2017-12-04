@@ -2,14 +2,6 @@
 // navigation.
 
 import React, {Component} from "react"
-import EventNav from "../../components/EventNav"
-import Home from "../../pages/Home"
-import EventHome from "../../pages/EventHome"
-import Attendees from "../../pages/Attendees"
-import Workshops from "../../pages/Workshops"
-import WorkshopDetails from "../../pages/WorkshopDetails"
-import Registration from "../../pages/Registration"
-import CheckIn from "../../pages/CheckIn"
 import {
     Sidebar,
     Segment,
@@ -20,15 +12,18 @@ import {
     Header,
     Grid
 } from 'semantic-ui-react'
-
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import Home from "../../pages/Home"
+import Attendees from "../../pages/Attendees"
+import Workshops from "../../pages/Workshops"
+import WorkshopDetails from "../../pages/WorkshopDetails"
+import Registration from "../../pages/Registration"
+import CheckIn from "../../pages/CheckIn"
 import "./Main.css";
 
 class Main extends Component {
     state = {
-        visible: false,
-        activeItem: 'home'
+        visible: false
     }
 
     toggleVisibility = () => this.setState({
@@ -37,31 +32,18 @@ class Main extends Component {
 
     render() {
         const {visible} = this.state
-        const {activeItem} = this.state
         return (
             <Router>
                 <div>
                     <Menu fluid widths={3}>
-                        <Menu.Item
-                            name='menu'
-                            active={activeItem === 'menu'}
-                            onClick={this.toggleVisibility}>
+                        <Menu.Item name='menu' onClick={this.toggleVisibility}>
                             <Icon name='sidebar'/>
                             Menu
                         </Menu.Item>
-                        <Menu.Item
-                            id="logo"
-                            as='a'
-                            href="/"
-                            name='logo'
-                            active={activeItem === 'logo'}
-                            onClick={this.handleMenuItemClick}>
+                        <Menu.Item id="logo" as={Link} to='/' name='logo'>
                             Event<span>Snap</span>
                         </Menu.Item>
-                        <Menu.Item
-                            name='scan'
-                            active={activeItem === 'scan'}
-                            onClick={this.handleMenuItemClick}>
+                        <Menu.Item as={Link} to='/event/checkin' name='scan'>
                             <Icon name='qrcode'/>
                             Check-In
                         </Menu.Item>
@@ -75,48 +57,23 @@ class Main extends Component {
                             icon='labeled'
                             vertical
                             inverted>
-                            <Menu.Item
-                                as='a'
-                                href='/'
-                                name='home'
-                                active={activeItem === 'home'}
-                                onClick={this.handleMenuItemClick}>
+                            <Menu.Item as={Link} to='/' name='home'>
                                 <Icon name='home'/>
                                 Home
                             </Menu.Item>
-                            <Menu.Item
-                                as='a'
-                                href='/event/attendees'
-                                name='attendees'
-                                active={activeItem === 'attendees'}
-                                onClick={this.handleMenuItemClick}>
+                            <Menu.Item as={Link} to='/event/attendees' name='attendees'>
                                 <Icon name='users'/>
                                 Attendees
                             </Menu.Item>
-                            <Menu.Item
-                                as='a'
-                                href='/event/workshops'
-                                name='workshops'
-                                active={activeItem === 'workshops'}
-                                onClick={this.handleMenuItemClick}>
+                            <Menu.Item as={Link} to='/event/workshops' name='workshops'>
                                 <Icon name='qrcode'/>
                                 Workshops
                             </Menu.Item>
-                            <Menu.Item
-                                as='a'
-                                href='/event/registration'
-                                name='registration'
-                                active={activeItem === 'registration'}
-                                onClick={this.handleMenuItemClick}>
+                            <Menu.Item as={Link} to='/event/registration' name='registration'>
                                 <Icon name='pencil'/>
                                 Registration
                             </Menu.Item>
-                            <Menu.Item
-                                as='a'
-                                href="/event/checkin"
-                                name='check-in'
-                                active={activeItem === 'check-in'}
-                                onClick={this.handleMenuItemClick}>
+                            <Menu.Item as={Link} to='/event/checkin' name='check-in'>
                                 <Icon name='checkmark'/>
                                 Check-In
                             </Menu.Item>
@@ -125,7 +82,6 @@ class Main extends Component {
                             <Segment basic>
                                 <Switch>
                                     <Route exact path="/" component={Home}/>
-                                    <Route exact path="/event" component={EventHome}/>
                                     <Route exact path="/event/attendees" component={Attendees}/>
                                     <Route exact path="/event/workshops" component={Workshops}/>
                                     <Route path="/event/workshops/:id" component={WorkshopDetails}/>

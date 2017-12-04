@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Container, Button} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 class Home extends Component {
 
@@ -12,11 +13,11 @@ class Home extends Component {
                     pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede
                     justo, fringilla vel, aliquet</p>
                 <Button.Group>
-                    <Button as='a' href='/event/registration'>
+                    <Button as={Link} to='/event/registration'>
                         Register
                     </Button>
                     <Button.Or/>
-                    <Button as='a' positive href='/event/registration'>
+                    <Button positive as={Link} to='/event/registration'>
                         Check-In
                     </Button>
                 </Button.Group>
