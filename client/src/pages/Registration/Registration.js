@@ -5,16 +5,15 @@ import API from "../../utils/API";
 import {setTimeout} from "timers";
 import {
     Container,
-    Dropdown,
+    Header,
     Grid,
-    Segment,
     Icon,
     Modal
 } from 'semantic-ui-react'
 import '../Main/Main.css'
-import openSocket from 'socket.io-client';
+// import openSocket from 'socket.io-client';
 
-const socket = openSocket();
+// const socket = openSocket();
 
 class Registration extends Component {
 
@@ -23,9 +22,6 @@ class Registration extends Component {
         this.state = {
             delay: 300,
             modalOpen: false,
-            workshops: [],
-            options: [],
-            selectedWS: {},
             msg: '',
             iconName: '',
             iconColor: 'grey'
@@ -43,7 +39,7 @@ class Registration extends Component {
             }.bind(this), 5000)
 
             if (!this.modalOpen) {
-                this.handleCheckIn(data, this.state.selectedWS.id)
+                this.handleRegistration(data)
 
             }
         }
@@ -53,15 +49,15 @@ class Registration extends Component {
         console.error(err)
     }
 
-    handleCheckIn = (uuid, id) => {
+    handleRegistration = (uuid) => {
         API
-            .checkIn(uuid, id)
+            .registration(uuid)
             .then(res => {
                 if (res.data.success) {
-                    console.log(`${uuid} is checked in now to workshop ${id}`)
+                    console.log(`${uuid} is registered`)
                     console.log("checked in successfully", res.data)
-                    this.setState({checkedIn: true, msg: 'Success', iconName: 'checkmark', iconColor: 'green'})
-                    socket.emit('checkIn', id);
+                    this.setState({registered: true, msg: 'Success', iconName: 'checkmark', iconColor: 'green'})
+                    // socket.emit('checkIn', id);
                 } else {
                     console.log(res.data.error);
                     this.setState({msg: res.data.error, iconName: 'x', iconColor: 'red'})
@@ -70,32 +66,6 @@ class Registration extends Component {
 
             })
             .catch(err => console.log(err.respose));
-    }
-
-    componentDidMount() {
-        this.loadWorkshops();
-    }
-
-    loadWorkshops = () => {
-        API
-            .getWorkshops()
-            .then(workshops => {
-                this.setState({
-                    workshops: workshops.data,
-                    options: workshops
-                        .data
-                        .map(workshop => ({key: workshop.id, text: workshop.code, value: workshop.id}))
-                })
-            })
-            .catch(err => console.log(err.respose))
-    }
-
-    handleChange = (e, {value}) => {
-        for (var i = 0; i < this.state.workshops.length; i++) {
-            if (this.state.workshops[i].id === value) {
-                this.setState({selectedWS: this.state.workshops[i]})
-            }
-        }
     }
 
     render() {
