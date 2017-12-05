@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Container, List} from 'semantic-ui-react'
+import {Container, List, Header} from 'semantic-ui-react'
 import API from "../../utils/API";
 
 export default class Attendees extends Component {
@@ -29,13 +29,11 @@ export default class Attendees extends Component {
                 <List.Item className='card' key={attendee.id}>
                     <List.Icon name='checkmark' size='big' verticalAlign='middle' color={attendee.registered
                         ? "green"
-                        : "grey"} // {{attendee.registered} ? 'color = green' : 'color = grey'}
+                        : "grey"} 
                     />
                     <List.Content>
-                        <List.Header as='h2'>
-                            {attendee.firstName}
-
-                            {attendee.lastName}
+                        <List.Header as='h3'>
+                            {attendee.firstName + " " + attendee.lastName}
                         </List.Header>
                         <List.Description>
                             <List>
@@ -60,11 +58,13 @@ export default class Attendees extends Component {
 
         return (
             <Container>
+                <Header as="h2" inverted>
+                    Event Attendees
+                </Header>
                 {this.state.attendees.length
                     ? (
                         <List divided inverted relaxed className='one-card'>
                             {this.attendeeRender()}
-
                         </List>
                     )
                     : (
