@@ -113,7 +113,7 @@ class CheckIn extends Component {
                                 // textAlign='center'
                                 onChange={this.handleChange}
                                 options={this.state.options}
-                                placeholder='Choose an option'
+                                placeholder='Choose a workshop'
                                 selection
                                 value={this.state.value}/>
                         </Grid.Column>
