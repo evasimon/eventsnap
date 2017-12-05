@@ -16,7 +16,7 @@ h1.header, h2.header, h3.header,
 
 h1.ui.inverted.header {
     font-size: 3em;
-    margin-top: 76px;
+    margin: 76px 0 30px;
 }
 
 h2.ui.inverted.header {
@@ -56,29 +56,43 @@ h2.ui.inverted.header {
 .ui.container p {
     letter-spacing: 1.3px;
     font-size: 20px;
+    line-height: 40px;
 }
 
 .ui.buttons {
     margin-top: 50px;
 }
 
-.ui.positive.button {
+.ui.positive.button{
     background-color: #38b5b5;
 }
 
-.ui.positive.button:hover {
+.ui.inverted.list .item.card h2.header a {
+    color: #38b5b5 !important;
+}
+
+.ui.positive.button:hover{
     background-color: #329FA3;
 }
 
-/* .ui.inverted.segment .ui.header {
-    background-color: #000
-} */
+.ui.inverted.list .item.card h2.header a:hover {
+    color: #329FA3 !important;
+}
+
+.ui.inverted.list .item.card h2.header {
+    margin-bottom: 20px;
+}
 
 .ui.divided.inverted.list .item.card,
 .ui.divided.inverted.list .item.badge-card {
-    padding: 20px;
+    padding: 30px;
     margin-bottom: 20px;
     background-color: #2d3948;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ui.divided.inverted.list .item.badge-card {
+    padding: 20px;
 }
 
 .ui.divided.inverted.list .item.badge-card {
@@ -93,13 +107,15 @@ h2.ui.inverted.header {
     margin: 30px auto 30px
 }
 
-.ui.divided.inverted.list .item.badge-card .list .item{
+.ui.divided.inverted.list .item.badge-card .list .item,
+.ui.divided.inverted.list .item.card .list .item{
     margin-bottom: 5px
 }
 
-.ui.divided.inverted.list .item.badge-card .list .item:last-child{
+.ui.divided.inverted.list .item.badge-card .list .item:last-child,
+.ui.divided.inverted.list .item.card .list .item:last-child{
     text-transform: uppercase;
-    margin-top: 24px;
+    margin-top: 2px;
     font-weight: bold;
     font-size: 16px;
 }
@@ -108,9 +124,9 @@ ui.inverted.four.statistics.card {
     background-color: #2d3948;
 }
 
-/* .container .centerBox {
-    margin: 0 auto;
-} */
+.container .centerBox {
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .ui.modal .center-text.content {
     text-align: center;

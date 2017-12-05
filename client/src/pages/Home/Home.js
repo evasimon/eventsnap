@@ -8,12 +8,13 @@ class Home extends Component {
         return (
             <Container textAlign='right'>
                 <Header as="h1" inverted>
-                    Experience the Event
+                    Experience Your Way In
                 </Header>
                 <Image src='/img/placeit.png' size='medium' floated='left'/>
-                <p>Real-time check-in data management for a better user experience. Lorem ipsum
-                    dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                    Aenean massa strong.</p>
+                <p>
+                    Easier and faster to greet event participants. Simple guest registration.
+                    Customized QR-code check-in experience and data management in Real-Time.
+                </p>
                 <Button.Group>
                     <Button as={Link} to='/event/registration'>
                         Register
@@ -28,4 +29,4 @@ class Home extends Component {
     }
 }
 
-export default Home
+export default Home;

@@ -15,9 +15,14 @@ import openSocket from 'socket.io-client';
 class WorkshopDetails extends Component {
 
     state = {
+        workshopId: 0,
         workshopCode: "",
         workshopTitle: "",
         instuctorName: "",
+        workshopDay: "",
+        workshopFrame: "",
+        workshopSkillLevel: "",
+        workshopMaxSeat: 0,
         totalLead: 0,
         totalFollower: 0,
         listCheckLead: [],
@@ -65,8 +70,13 @@ class WorkshopDetails extends Component {
                     .map(obj => obj.Attendee)
 
                 this.setState({
+                    workshopId: res.data.workshop.id,
                     workshopCode: res.data.workshop.code,
                     workshopTitle: res.data.workshop.title,
+                    workshopDay: res.data.workshop.day,
+                    workshopTimeFrame: res.data.workshop.timeFrame,
+                    workshopSkillLevel: res.data.workshop.skillLevel,
+                    workshopMaxSeat: res.data.workshop.maxSeat,
                     instuctorName: res.data.workshop.Instructor.coupleName,
                     totalLead,
                     totalFollower,
@@ -82,20 +92,24 @@ class WorkshopDetails extends Component {
         return (
             <div>
 
-                <Container fluid>
-                    {/* <Segment inverted padded='very'> */}
+                <Container>
+                    <Header as="h1" inverted textAlign="center">Workshop Real-Time Check-In Data</Header>
                     <List divided inverted relaxed className='one-card'>
                         < List.Item className='card'>
                             <List.Content>
-                                <List.Header as='h2'>{this.state.workshopCode}: {this.state.workshopTitle}</List.Header>
-                                {/* Date */}
-                                Instructors: {this.state.instuctorName}
+                                <List.Header as="h2">
+                                        {this.state.workshopCode}: {this.state.workshopTitle}
+                                </List.Header>
+                                <List.Description>
+                                    <List>
+                                        <List.Item icon='calendar times' content={this.state.workshopDay + " " + this.state.workshopTimeFrame}/>
+                                        <List.Item icon='users' content={'Instructors: ' + this.state.instuctorName}/>
+                                        <List.Item icon='fire' content={this.state.workshopSkillLevel}/>
+                                    </List>
+                                </List.Description>
                             </List.Content>
                         </List.Item>
                     </List>
-
-                    {/* </Segment> */}
-                    {/* <Segment inverted padded='very'> */}
 
                     <Statistic.Group widths='four' inverted>
                         <Statistic>
@@ -109,14 +123,14 @@ class WorkshopDetails extends Component {
 
                         <Statistic>
                             <Statistic.Value>
-                                <Icon name='checkmark'/> {this.state.listCheckLead.length + this.state.listCheckFollower.length}
+                                <Icon name='checkmark' color="teal"/> {this.state.listCheckLead.length + this.state.listCheckFollower.length}
                             </Statistic.Value>
                             <Statistic.Label>Check Ins</Statistic.Label>
                         </Statistic>
 
                         <Statistic>
                             <Statistic.Value>
-                                40
+                                {this.state.workshopMaxSeat}
                             </Statistic.Value>
                             <Statistic.Label>Capacity</Statistic.Label>
                         </Statistic>
@@ -129,7 +143,7 @@ class WorkshopDetails extends Component {
                                     value={this.state.listCheckLead.length}
                                     total={this.state.totalLead}
                                     progress='ratio'
-                                    inverted/>  
+                                    inverted/>
                                 <List divided inverted relaxed>
                                     {this
                                         .state

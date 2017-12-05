@@ -27,26 +27,27 @@ export default class Attendees extends Component {
             .attendees
             .map(attendee => (
                 <List.Item className='card' key={attendee.id}>
-                    <List.Icon name='checkmark' size='big' verticalAlign='middle' color={attendee.registered
-                        ? "green"
-                        : "grey"} 
-                    />
+                    <List.Icon
+                        name='checkmark'
+                        size='big'
+                        verticalAlign='middle'
+                        color={attendee.registered
+                        ? "teal"
+                        : "grey"}/>
                     <List.Content>
-                        <List.Header as='h3'>
+                        <List.Header as='h2'>
                             {attendee.firstName + " " + attendee.lastName}
                         </List.Header>
                         <List.Description>
                             <List>
-                                <List.Item icon='users' content='Dancer Type'/>
-                                <List.Item icon='marker' content='New York, NY'/>
                                 <List.Item
-                                    icon='mail'
-                                    content=
-                                    {<a href='mailto:jack@semantic-ui.com'> jack@semantic - ui.com </a>}/>
-                                <List.Item
-                                    icon='linkify'
-                                    content=
-                                    {<a href='http://www.semantic-ui.com'> semantic-ui.com </a>}/>
+                                    icon='user'
+                                    content={(attendee.dancerType === "F")
+                                    ? "Follower"
+                                    : "Lead"}/>
+                                <List.Item icon='marker' content={attendee.city + ", " + attendee.state}/>
+                                <List.Item icon='mail' content={attendee.email}/>
+                                <List.Item icon='qrcode' content='Full Festival Pass'/>
                             </List>
                         </List.Description>
                     </List.Content>
@@ -58,7 +59,7 @@ export default class Attendees extends Component {
 
         return (
             <Container>
-                <Header as="h2" inverted>
+                <Header as="h1" inverted>
                     Event Attendees
                 </Header>
                 {this.state.attendees.length

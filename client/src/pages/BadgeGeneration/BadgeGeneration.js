@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Container, List, Image} from 'semantic-ui-react'
+import {Container, List, Image, Header} from 'semantic-ui-react'
 import API from "../../utils/API";
 
 class BadgeGeneration extends Component {
@@ -24,8 +24,9 @@ class BadgeGeneration extends Component {
     render() {
         return (
             <Container>
-                <h2>Badges</h2>
-
+                <Header as="h1" inverted>
+                    Print Badges (CTRL + P)
+                </Header>
                 {this.state.attendees.length
                     ? (
                         <List divided inverted relaxed className='one-card'>

@@ -9,7 +9,8 @@ import {
     Grid,
     Segment,
     Icon,
-    Modal
+    Modal,
+    Header
 } from 'semantic-ui-react'
 import '../Main/Main.css'
 import openSocket from 'socket.io-client';
@@ -107,6 +108,7 @@ class CheckIn extends Component {
         return (
             <div>
                 <Container>
+                    <Header as="h1" inverted textAlign="center">Check-In Now</Header>
                     <Grid>
                         <Grid.Column textAlign='center'>
                             <Dropdown

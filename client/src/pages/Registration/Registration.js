@@ -3,17 +3,9 @@ import React, {Component} from "react";
 import QrReader from "react-qr-reader";
 import API from "../../utils/API";
 import {setTimeout} from "timers";
-import {
-    Container,
-    Header,
-    Grid,
-    Icon,
-    Modal
-} from 'semantic-ui-react'
+import {Container, Header, Grid, Icon, Modal} from 'semantic-ui-react'
 import '../Main/Main.css'
-// import openSocket from 'socket.io-client';
-
-// const socket = openSocket();
+// import openSocket from 'socket.io-client'; const socket = openSocket();
 
 class Registration extends Component {
 
@@ -73,7 +65,8 @@ class Registration extends Component {
         return (
             <div>
                 <Container>
-                    <Header as="h2" inverted textAlign="center">Please Scan QR Code</Header>
+                    <Header as="h1" inverted textAlign="center">Event Registration</Header>
+                    {/* <p>Scan QR Code</p> */}
                     <Grid>
                         <Grid.Column>
                             <QrReader
