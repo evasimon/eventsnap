@@ -8,7 +8,8 @@ class Home extends Component {
         return (
             <Container textAlign='right'>
                 <Header as="h1" inverted>
-                    Experience Your Way In
+                    {/* Experience the EventSpan */}
+                    <span id="logo">Event<span>Snap</span></span>
                 </Header>
                 <Image src='/img/placeit.png' size='medium' floated='left'/>
                 <p>
