@@ -49,32 +49,32 @@ class Main extends Component {
                             icon='labeled'
                             vertical
                             inverted>
-                            <Menu.Item as={Link} to='/' name='home'>
+                            <Menu.Item as={NavLink} to='/home' name='home'>
                                 <Icon name='home'/>
                                 Home
                             </Menu.Item>
-                            {/* <Menu.Item as={NavLink} to='/event/attendees' name='attendees'> */}
-                            <Menu.Item as='a' href='/event/attendees' name='attendees'>
+                            <Menu.Item as={NavLink} to='/event/attendees' name='attendees'>
                                 <Icon name='users'/>
                                 Attendees
                             </Menu.Item>
                             <Menu.Item as={NavLink} to='/event/workshops' name='workshops'>
-                                <Icon name='qrcode'/>
+                                <Icon name='magic'/>
                                 Workshops
                             </Menu.Item>
-                            <Menu.Item as={Link} to='/event/registration' name='registration'>
+                            <Menu.Item as={NavLink} to='/event/registration' name='registration'>
                                 <Icon name='pencil'/>
                                 Registration
                             </Menu.Item>
-                            <Menu.Item as={Link} to='/event/checkin' name='check-in'>
-                                <Icon name='checkmark'/>
+                            <Menu.Item as={NavLink} to='/event/checkin' name='check-in'>
+                                <Icon name='qrcode'/>
                                 Check-In
                             </Menu.Item>
                         </Sidebar>
                         <Sidebar.Pusher>
-                            <Segment basic>
+                            <Segment basic onClick={this.toggleVisibility}>
                                 <Switch>
                                     <Route exact path="/" component={Home}/>
+                                    <Route exact path="/home" component={Home}/>
                                     <Route exact path="/event/attendees" component={Attendees}/>
                                     <Route exact path="/event/workshops" component={Workshops}/>
                                     <Route path="/event/workshops/:id" component={WorkshopDetails}/>
