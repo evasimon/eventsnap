@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Container, List} from 'semantic-ui-react'
+import {Container, List, Header} from 'semantic-ui-react'
 import API from "../../utils/API";
 
 class Workshops extends Component {
@@ -26,6 +26,9 @@ class Workshops extends Component {
         return (
             <div>
                 <Container>
+                    <Header as="h1" inverted>
+                        Event Workshops
+                    </Header>
                     {this.state.workshops.length
                         ? (
                             <List divided inverted relaxed className='one-card'>
