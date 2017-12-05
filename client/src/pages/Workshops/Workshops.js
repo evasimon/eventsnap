@@ -45,16 +45,12 @@ class Workshops extends Component {
                                                 </List.Header>
                                                 <List.Description>
                                                     <List>
-                                                        <List.Item icon='users' content='Dancer Type'/>
-                                                        <List.Item icon='marker' content='New York, NY'/>
                                                         <List.Item
-                                                            icon='mail'
-                                                            content=
-                                                            {<a href='mailto:jack@semantic-ui.com'> jack@semantic - ui.com </a>}/>
-                                                        <List.Item
-                                                            icon='linkify'
-                                                            content=
-                                                            {<a href='http://www.semantic-ui.com'> semantic-ui.com </a>}/>
+                                                            icon='users'
+                                                            content={'Instructors: ' + workshop.Instructor.coupleName}/>
+                                                        <List.Item icon='calendar times' content={workshop.day + " " + workshop.timeFrame}/>
+                                                        <List.Item icon='law' content={'Max. Seats: ' + workshop.maxSeat}/>
+                                                        <List.Item icon='fire' content={workshop.skillLevel}/>
                                                     </List>
                                                 </List.Description>
                                             </List.Content>
