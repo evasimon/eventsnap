@@ -26,7 +26,7 @@ class Workshops extends Component {
         return (
             <div>
                 <Container>
-                    <Header as="h1" inverted>
+                    <Header as="h2" inverted>
                         Event Workshops
                     </Header>
                     {this.state.workshops.length

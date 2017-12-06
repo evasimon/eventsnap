@@ -87,7 +87,7 @@ span#logo {
     color: #329FA3 !important;
 }
 
-.ui.inverted.list .item.card h2.header {
+.ui.inverted.list .item.card h3.header {
     margin-bottom: 20px;
 }
 
@@ -151,6 +151,10 @@ ui.inverted.four.statistics.card {
 
 .list.item {
     margin: 5px 0;
+}
+
+.ui.inverted.four.statistics {
+    margin: 20px 0 10px
 }
 
 @media print {

@@ -22,7 +22,7 @@ class CheckIn extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            delay: 300,
+            delay: 500,
             modalOpen: false,
             workshops: [],
             options: [],
@@ -40,8 +40,8 @@ class CheckIn extends Component {
         if (data) {
 
             setTimeout(function () {
-                this.setState({delay: 300, modalOpen: false})
-            }.bind(this), 5000)
+                this.setState({delay: 500, modalOpen: false})
+            }.bind(this), 3000)
 
             if (!this.modalOpen) {
                 this.handleCheckIn(data, this.state.selectedWS.id)
@@ -89,7 +89,7 @@ class CheckIn extends Component {
                     workshops: workshops.data,
                     options: workshops
                         .data
-                        .map(workshop => ({key: workshop.id, text: workshop.code, value: workshop.id}))
+.map(workshop => ({key: workshop.id, text: workshop.code + ": " + workshop.title, value: workshop.id}))
                 })
             })
             .catch(err => console.log(err.respose))
@@ -108,7 +108,7 @@ class CheckIn extends Component {
         return (
             <div>
                 <Container>
-                    <Header as="h1" inverted textAlign="center">Check-In Now</Header>
+                    <Header as="h2" inverted textAlign="center">Check-In Now</Header>
                     <Grid>
                         <Grid.Column textAlign='center'>
                             <Dropdown

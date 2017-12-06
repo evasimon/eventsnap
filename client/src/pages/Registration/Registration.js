@@ -10,7 +10,7 @@ class Registration extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            delay: 300,
+            delay: 500,
             modalOpen: false,
             msg: '',
             iconName: '',
@@ -60,7 +60,7 @@ class Registration extends Component {
         return (
             <div>
                 <Container>
-                    <Header as="h1" inverted textAlign="center">Event Registration</Header>
+                    <Header as="h2" inverted textAlign="center">Event Registration</Header>
                     {/* <p>Scan QR Code</p> */}
                     <Grid>
                         <Grid.Column>

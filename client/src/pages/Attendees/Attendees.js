@@ -59,7 +59,7 @@ export default class Attendees extends Component {
 
         return (
             <Container>
-                <Header as="h1" inverted>
+                <Header as="h2" inverted>
                     Event Attendees
                 </Header>
                 {this.state.attendees.length

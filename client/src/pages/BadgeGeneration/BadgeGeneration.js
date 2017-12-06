@@ -24,8 +24,8 @@ class BadgeGeneration extends Component {
     render() {
         return (
             <Container>
-                <Header as="h1" inverted>
-                    Print Badges (CTRL + P)
+                <Header as="h2" inverted>
+                    Print Event Badges (CTRL + P)
                 </Header>
                 {this.state.attendees.length
                     ? (

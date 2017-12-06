@@ -93,16 +93,18 @@ class WorkshopDetails extends Component {
             <div>
 
                 <Container>
-                    <Header as="h1" inverted textAlign="center">Workshop Real-Time Check-In Data</Header>
+                    <Header as="h2" inverted textAlign="center">Workshop Real-Time Check-In Data</Header>
                     <List divided inverted relaxed className='one-card'>
                         < List.Item className='card'>
                             <List.Content>
-                                <List.Header as="h2">
-                                        {this.state.workshopCode}: {this.state.workshopTitle}
+                                <List.Header as="h3">
+                                    {this.state.workshopCode}: {this.state.workshopTitle}
                                 </List.Header>
                                 <List.Description>
                                     <List>
-                                        <List.Item icon='calendar times' content={this.state.workshopDay + " " + this.state.workshopTimeFrame}/>
+                                        <List.Item
+                                            icon='calendar times'
+                                            content={this.state.workshopDay + " " + this.state.workshopTimeFrame}/>
                                         <List.Item icon='users' content={'Instructors: ' + this.state.instuctorName}/>
                                         <List.Item icon='fire' content={this.state.workshopSkillLevel}/>
                                     </List>
@@ -138,19 +140,19 @@ class WorkshopDetails extends Component {
                     <Grid divided='vertically'>
                         <Grid.Row columns={2}>
                             <Grid.Column>
-                                <Header as="h3" inverted>Leads List</Header>
+                                <Header as="h3" inverted textAlign='center'>Leads List</Header>
                                 <Progress
                                     value={this.state.listCheckLead.length}
                                     total={this.state.totalLead}
                                     progress='ratio'
-                                    inverted/>
+                                    inverted
+                                    color="brown"/>
                                 <List divided inverted relaxed>
                                     {this
                                         .state
                                         .listCheckLead
                                         .map(obj => <List.Item>
-                                            {obj.firstName}
-                                            {obj.firstName}
+                                            {obj.firstName + " " + obj.lastName}
                                         </List.Item>)}
                                 </List>
                             </Grid.Column>
@@ -160,14 +162,14 @@ class WorkshopDetails extends Component {
                                     value={this.state.listCheckFollower.length}
                                     total={this.state.totalFollower}
                                     progress='ratio'
-                                    inverted/>
+                                    inverted
+                                    color="violet"/>
                                 <List divided inverted relaxed>
                                     {this
                                         .state
                                         .listCheckFollower
                                         .map(obj => <List.Item>
-                                            {obj.firstName}
-                                            {obj.firstName}
+                                            {obj.firstName + " " + obj.lastName}
                                         </List.Item>)}
                                 </List>
                             </Grid.Column>
