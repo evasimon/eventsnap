@@ -115,11 +115,11 @@ class WorkshopDetails extends Component {
 
                     <Statistic.Group widths='four' inverted>
                         <Statistic>
-                            <Statistic.Value>{this.state.totalLead}</Statistic.Value>
+                            <Statistic.Value>{this.state.listCheckLead.length}</Statistic.Value>
                             <Statistic.Label>Total Leads</Statistic.Label>
                         </Statistic>
                         <Statistic>
-                            <Statistic.Value>{this.state.totalFollower}</Statistic.Value>
+                            <Statistic.Value>{this.state.listCheckFollower.length}</Statistic.Value>
                             <Statistic.Label>Total Followers</Statistic.Label>
                         </Statistic>
 
