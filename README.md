@@ -43,7 +43,7 @@
 
 ![Schema Image](https://evasimon.github.io/img/github/eventsnap/eventsnap-schema.jpg)
 
-### Landing Screen with the Slide-in Menu Bar
+### Landing Screen with Slide-in Menu Bar
 
 ![Landing Image](https://evasimon.github.io/img/github/eventsnap/eventsnap-landing.jpg)
 
@@ -54,4 +54,4 @@
 
 
 
-### Hire Me!
+### :sparkles: Like it?!? Hit Star and Hire Me!
