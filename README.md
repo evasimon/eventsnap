@@ -7,7 +7,7 @@
 [EventSnap](https://eventsnap.herokuapp.com/) is a QR code generator and reader full-stack WebApp that allows event organizers register guests and monitor custom check-ins in real-time.
 
 
-![Schema Image](https://evasimon.github.io/img/github/eventsnap/eventsnap-hero.png)
+![Hero Image](https://evasimon.github.io/img/github/eventsnap/eventsnap-hero.png)
 
 
 ### Goal
@@ -30,15 +30,28 @@
   * `mySQL/sequelize` to query and route data,
   * following `MVC` design patterns,
   * `socket.io` for real-time communication.
+ 
+* Heroku Deployment: [EventSnap](https://eventsnap.herokuapp.com/)
   
 
 ### User Story
 
-![Schema Image](https://evasimon.github.io/img/github/eventsnap/eventsnap-story.jpg)
+![User Story Image](https://evasimon.github.io/img/github/eventsnap/eventsnap-story.jpg)
 
   
 ### Schema
 
-![Schema Image](https://evasimon.github.io/img/github/eventsnap-schema.jpg)
+![Schema Image](https://evasimon.github.io/img/github/eventsnap/eventsnap-schema.jpg)
 
-WIP
+### Landing Screen with the Slide-in Menu Bar
+
+![Landing Image](https://evasimon.github.io/img/github/eventsnap/eventsnap-landing.jpg)
+
+
+### Real-Time Data Monitoring Screen
+
+![Real-Time Data Image](https://evasimon.github.io/img/github/eventsnap/eventsnap-real-time.jpg)
+
+
+
+### Hire Me!
