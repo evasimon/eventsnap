@@ -1,11 +1,11 @@
 // npm packages required / dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path");
 const routes = require("./routes")
 
 // sets up the Express App
 const app = require("express")();
+// sets the environment variable PORT to tell the web server what port to listen on
 const PORT = process.env.PORT || 3001;
 
 // serves up static assets (usually on heroku)
