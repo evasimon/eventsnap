@@ -32,9 +32,7 @@ class Workshops extends Component {
                     {this.state.workshops.length
                         ? (
                             <List divided inverted relaxed className='one-card'>
-                                {this
-                                    .state
-                                    .workshops
+                                {this.state.workshops
                                     .map(workshop => (
                                         <List.Item className='card' key={workshop.id}>
                                             <List.Content>

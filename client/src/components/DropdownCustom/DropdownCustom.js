@@ -7,6 +7,7 @@ const options = [
     { key: 3, text: 'Three', value: 3 },
 ]
 
+// react component rendered on the check-in page
 export default class DropdownCustom extends Component {
     state = {}
 

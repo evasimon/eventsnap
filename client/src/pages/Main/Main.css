@@ -157,6 +157,7 @@ ui.inverted.four.statistics.card {
     margin: 20px 0 10px
 }
 
+/* sets media print query to print badges */
 @media print {
     *, body, html,
     .ui.segment.pushable,

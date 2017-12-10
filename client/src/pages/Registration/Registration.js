@@ -42,9 +42,7 @@ class Registration extends Component {
             .then(res => {
                 if (res.data.success) {
                     console.log(`${uuid} is registered`)
-                    console.log("checked in successfully", res.data)
                     this.setState({registered: true, msg: 'Success', iconName: 'checkmark', iconColor: 'green'})
-                    // socket.emit('checkIn', id);
                 } else {
                     console.log(res.data.error);
                     this.setState({msg: res.data.error, iconName: 'x', iconColor: 'red'})
@@ -61,7 +59,6 @@ class Registration extends Component {
             <div>
                 <Container>
                     <Header as="h2" inverted textAlign="center">Event Registration</Header>
-                    {/* <p>Scan QR Code</p> */}
                     <Grid>
                         <Grid.Column>
                             <QrReader
@@ -75,12 +72,6 @@ class Registration extends Component {
                         </Grid.Column>
                     </Grid>
 
-                    {/* <Modal open={this.state.modalOpen} basic size='small'>
-                        <Modal.Content className={'center-text'}>
-                            <Icon name={this.state.iconName} size={'massive'} color={this.state.iconColor}/>
-                            <p>{this.state.msg}</p>
-                        </Modal.Content>
-                    </Modal> */}
                     <Modal open={this.state.modalOpen} basic size='small'>
                         <Modal.Content>
                             <Header as="h1" inverted textAlign="center">

@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-// import {Col, Row, Container} from "../Grid";
 import QrReader from "react-qr-reader";
 import API from "../../utils/API";
 import {setTimeout} from "timers";
@@ -38,14 +37,14 @@ class CheckIn extends Component {
 
     handleScan(data) {
         if (data) {
-
+            // restarts scan after 3s
             setTimeout(function () {
                 this.setState({delay: 500, modalOpen: false})
             }.bind(this), 3000)
 
+            // handles check-in if Modal not open
             if (!this.modalOpen) {
                 this.handleCheckIn(data, this.state.selectedWS.id)
-
             }
         }
     }
@@ -62,11 +61,13 @@ class CheckIn extends Component {
                     console.log(`${uuid} is checked in now to workshop ${id}`)
                     console.log("checked in successfully", res.data)
                     this.setState({checkedIn: true, msg: 'Success', iconName: 'checkmark', iconColor: 'green'})
+                    // sends workshopId to the server
                     socket.emit('checkIn', id);
                 } else {
                     console.log(res.data.error);
                     this.setState({msg: res.data.error, iconName: 'x', iconColor: 'red'})
                 }
+                // stops scanning and opens modal
                 this.setState({delay: false, modalOpen: true})
 
             })
@@ -81,20 +82,25 @@ class CheckIn extends Component {
     //     socket.disconnect();
     // }
 
+    // loads workshop list under the dropdown when the check-in page is rendered
     loadWorkshops = () => {
         API
             .getWorkshops()
             .then(workshops => {
                 this.setState({
                     workshops: workshops.data,
-                    options: workshops
-                        .data
-.map(workshop => ({key: workshop.id, text: workshop.code + ": " + workshop.title, value: workshop.id}))
+                    options: workshops.data.map(workshop => (
+                        {
+                            key: workshop.id,
+                            text: workshop.code + ": " + workshop.title,
+                            value: workshop.id
+                        }))
                 })
             })
             .catch(err => console.log(err.respose))
     }
 
+    // gets the selected workshop's id/value
     handleChange = (e, {value}) => {
         for (var i = 0; i < this.state.workshops.length; i++) {
             if (this.state.workshops[i].id === value) {
@@ -112,7 +118,6 @@ class CheckIn extends Component {
                     <Grid>
                         <Grid.Column textAlign='center'>
                             <Dropdown
-                                // textAlign='center'
                                 onChange={this.handleChange}
                                 options={this.state.options}
                                 placeholder='Choose a workshop'
@@ -146,7 +151,6 @@ class CheckIn extends Component {
                             <p>{this.state.msg}</p>
                         </Modal.Content>
                     </Modal>
-
                 </Container>
             </div>
         )

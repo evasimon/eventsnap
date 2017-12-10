@@ -8,7 +8,6 @@ import {
     Progress,
     Statistic
 } from 'semantic-ui-react'
-import './WorkshopDetails.css'
 import API from "../../utils/API";
 import openSocket from 'socket.io-client';
 
