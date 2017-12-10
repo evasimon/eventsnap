@@ -21,7 +21,7 @@ module.exports = function (sequelize, DataTypes) {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            // the Attendee's last name cannot be null
+            // the Attendee's email cannot be null
             validate: {
                 len: [1, 50]
             }
@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
         city: {
             type: DataTypes.STRING,
             allowNull: false,
-            // the Attendee's last name cannot be null
+            // the Attendee's city cannot be null
             validate: {
                 len: [1, 50]
             }
@@ -37,11 +37,12 @@ module.exports = function (sequelize, DataTypes) {
         state: {
             type: DataTypes.STRING,
             allowNull: false,
-            // the Attendee's last name cannot be null
+            // the Attendee's state cannot be null
             validate: {
                 len: [1, 50]
             }
         },
+        // the Attendee's unique identifier cannot be null
         uuid: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV1,
@@ -55,21 +56,25 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1, 12]
             }
         },
+        // nedded when class selection form is sent to the attenddee functionality not
+        // implemented, yet
         emailSent: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
 
         },
+        // functionality not implemented, yet
         formCompleted: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
 
         },
+        // functionality not implemented, yet
         badgePrinted: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
-
         },
+        // sets the registered datatype for the attendee
         registered: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

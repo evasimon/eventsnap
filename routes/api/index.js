@@ -10,5 +10,4 @@ router.use("/workshops", workshopsRoutes);
 router.use("/check-in", checkInRoutes)
 router.use("/registration", registrationRoutes)
 
-
 module.exports = router;

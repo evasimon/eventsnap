@@ -4,13 +4,12 @@ const db = require("../models");
 module.exports = {
     // finds all the workshops in the database
     findAll: function (req, res) {
-        console.log(req.body)
         db.Workshop
             .findAll({ include: [{ model: db.Instructor }]})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    // removes workshop from the database
+    // finds One workshop in the database & includes Instructor
     findWorkshop: function (req, res) {
         // console.log('entered here')
         db.Workshop
@@ -22,7 +21,7 @@ module.exports = {
                     }
             })
             .then(workshop => {
-                // console.log(workshop)
+                // finds all class selections for that workshop & includes Attendees
                 db.WorkshopSelection
                     .findAll({
                         where: {
@@ -31,7 +30,6 @@ module.exports = {
                         include: [db.Attendee]
                     })
                     .then(result => {
-                        // console.log(result)
                         res.json({ workshop, result })
                     })
             })

@@ -19,7 +19,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     WorkshopSelection.associate = function (models) {
-
+        // each WorkshopSelection belongs to a Workshop/ sets Workshop as foreign key constraint
         WorkshopSelection.belongsTo(models.Workshop, {
             foreignKey: {
                 allowNull: false
@@ -27,7 +27,7 @@ module.exports = function (sequelize, DataTypes) {
             onDelete: "cascade"
 
         });
-
+        // each WorkshopSelection belongs to a Attendee/ sets Attendee as foreign key constraint
         WorkshopSelection.belongsTo(models.Attendee, {
             foreignKey: {
                 allowNull: false

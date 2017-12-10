@@ -1,14 +1,12 @@
 const router = require("express").Router();
 const workshopsController = require("../../controllers/workshopsController");
 
-// Matches with "/api/workshops"
+// matches with "/api/workshops"
 router.route("/")
-    .get(workshopsController.findAll)
-    // .post(workshopsController.create);
+      .get(workshopsController.findAll)
 
-// Matches with "/api/workshops/:id"
-router
-    .route("/:id")
-    .get(workshopsController.findWorkshop)
+// matches with "/api/workshops/:id"
+router.route("/:id")
+      .get(workshopsController.findWorkshop)
 
 module.exports = router;
