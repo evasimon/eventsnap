@@ -1,7 +1,5 @@
 # EventSnap
 
-:white_check_mark: Final Project as part of the Northwestern Full-Stack Web Development Bootcamp Fall 2017 Cohort!
-
 ### Overview
 
 [EventSnap](https://eventsnap.herokuapp.com/) is a QR code generator and reader full-stack WebApp that allows event organizers register guests and monitor custom check-ins in real-time.
@@ -54,4 +52,4 @@
 
 
 
-### :sparkles: Like it?!? Hit Star and Hire Me!
+### :sparkles: Like it?!?
